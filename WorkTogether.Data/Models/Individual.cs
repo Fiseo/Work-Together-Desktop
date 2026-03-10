@@ -8,10 +8,10 @@ namespace WorkTogether.Data.Models
         public string? LastName { get; set; }
 
         public int? CivilityId { get; set; }
-        public virtual Civility? Civility { get; set; }
+        public Civility? Civility { get; set; }
 
         public DateTime? BirthDate { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

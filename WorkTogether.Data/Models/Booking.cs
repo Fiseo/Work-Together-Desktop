@@ -28,5 +28,5 @@ public partial class Booking
 
     public string Label { get; set; } = null!;
 
-    public virtual ICollection<BookingUnit> BookingUnits { get; set; } = new List<BookingUnit>();
+    public ICollection<BookingUnit> BookingUnits { get; set; } = new List<BookingUnit>();
 }

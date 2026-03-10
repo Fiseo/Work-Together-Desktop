@@ -7,6 +7,6 @@
         public string? LastName { get; set; }
 
         public int? CivilityId { get; set; }
-        public virtual Civility? Civility { get; set; }
+        public Civility? Civility { get; set; }
     }
 }

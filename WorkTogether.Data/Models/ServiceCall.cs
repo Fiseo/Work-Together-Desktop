@@ -15,9 +15,9 @@ public partial class ServiceCall
 
     public int TypeId { get; set; }
 
-    public virtual Technician Technician { get; set; } = null!;
+    public Technician Technician { get; set; } = null!;
 
-    public virtual ServiceCallType Type { get; set; } = null!;
+    public ServiceCallType Type { get; set; } = null!;
 
-    public virtual Unit Unit { get; set; } = null!;
+    public Unit Unit { get; set; } = null!;
 }

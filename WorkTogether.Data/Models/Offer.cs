@@ -15,5 +15,5 @@ public partial class Offer
 
     public string Description { get; set; } = null!;
 
-    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+    public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 }

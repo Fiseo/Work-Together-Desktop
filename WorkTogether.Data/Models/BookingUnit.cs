@@ -15,7 +15,7 @@ public partial class BookingUnit
 
     public int UnitId { get; set; }
 
-    public virtual Booking Booking { get; set; } = null!;
+    public Booking Booking { get; set; } = null!;
 
-    public virtual Unit Unit { get; set; } = null!;
+    public Unit Unit { get; set; } = null!;
 }

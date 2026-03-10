@@ -9,5 +9,5 @@ public partial class ServiceCallType
 
     public string Label { get; set; } = null!;
 
-    public virtual ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
+    public ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
 }

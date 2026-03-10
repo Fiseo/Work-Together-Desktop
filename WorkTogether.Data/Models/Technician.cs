@@ -2,6 +2,6 @@
 {
     public class Technician: Staff
     {
-        public virtual ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
+        public ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
     }
 }
