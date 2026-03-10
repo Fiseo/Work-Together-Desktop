@@ -14,22 +14,19 @@ public partial class Booking
     public DateTime End { get; set; }
 
     public int OfferId { get; set; }
+    public virtual Offer Offer { get; set; } = null!;
 
     public sbyte IsPayed { get; set; }
 
     public sbyte IsRenewable { get; set; }
 
     public int? IndividualId { get; set; }
+    public virtual Individual? Individual { get; set; }
 
     public int? CompanyId { get; set; }
+    public virtual Company? Company { get; set; }
 
     public string Label { get; set; } = null!;
 
     public virtual ICollection<BookingUnit> BookingUnits { get; set; } = new List<BookingUnit>();
-
-    public virtual User? Company { get; set; }
-
-    public virtual User? Individual { get; set; }
-
-    public virtual Offer Offer { get; set; } = null!;
 }

@@ -9,5 +9,7 @@ public partial class Civility
 
     public string Label { get; set; } = null!;
 
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<Individual> Individuals { get; set; } = new List<Individual>();
+    public virtual ICollection<Staff> Staffs { get; set; } = new List<Staff>();
+
 }
