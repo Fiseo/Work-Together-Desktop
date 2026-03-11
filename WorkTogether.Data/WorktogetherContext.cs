@@ -30,6 +30,8 @@ public partial class WorkTogetherContext : DbContext
 
     public virtual DbSet<Unit> UnitSet { get; set; }
 
+    public virtual DbSet<User> UserSet { get; set; }
+
     public virtual DbSet<User> AdminSet { get; set; }
 
     public virtual DbSet<Individual> IndividualSet { get; set; }
