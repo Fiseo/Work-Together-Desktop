@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WorkTogether.Data.Models;
 
-namespace WorkTogether.Data.Models;
+namespace WorkTogether.Data;
 
-public partial class WorktogetherContext : DbContext
+public partial class WorkTogetherContext : DbContext
 {
-    public WorktogetherContext()
+    public WorkTogetherContext()
     {
     }
 
-    public WorktogetherContext(DbContextOptions<WorktogetherContext> options)
+    public WorkTogetherContext(DbContextOptions<WorkTogetherContext> options)
         : base(options)
     {
     }
