@@ -4,7 +4,7 @@ using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF
 {
-    abstract class AbstractWindow<U>: Window
+    abstract public class AbstractWindow<U>: Window
         where U : User
     {
         protected U user;
