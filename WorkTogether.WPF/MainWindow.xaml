@@ -3,10 +3,192 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorkTogether.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="WorkTogether" Height="400" Width="440"
+        MinHeight="340" MinWidth="360"
+        WindowStartupLocation="CenterScreen">
 
-    </Grid>
+    <Window.Resources>
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="BgBrush"       Color="#F7F8FA"/>
+        <SolidColorBrush x:Key="CardBrush"      Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="AccentBrush"    Color="#1A56DB"/>
+        <SolidColorBrush x:Key="AccentHover"    Color="#1348C0"/>
+        <SolidColorBrush x:Key="TextMain"       Color="#111827"/>
+        <SolidColorBrush x:Key="TextMuted"      Color="#6B7280"/>
+        <SolidColorBrush x:Key="BorderNormal"   Color="#D1D5DB"/>
+        <SolidColorBrush x:Key="BorderFocus"    Color="#1A56DB"/>
+        <SolidColorBrush x:Key="ErrorBg"        Color="#FEF2F2"/>
+        <SolidColorBrush x:Key="ErrorBorder"    Color="#FECACA"/>
+        <SolidColorBrush x:Key="ErrorText"      Color="#B91C1C"/>
+
+        <!-- TextBox style -->
+        <Style x:Key="FieldBox" TargetType="TextBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderNormal}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource BorderFocus}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- PasswordBox style -->
+        <Style x:Key="FieldPass" TargetType="PasswordBox">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderNormal}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="{StaticResource BorderFocus}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Button style -->
+        <Style x:Key="PrimaryBtn" TargetType="Button">
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="{StaticResource AccentHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bg" Property="Opacity" Value="0.9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Label style -->
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMuted}"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+    </Window.Resources>
+
+    <!-- Fond gris clair -->
+    <Border Background="{StaticResource BgBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Carte blanche centrée -->
+            <Border Grid.Column="1"
+                    Background="{StaticResource CardBrush}"
+                    CornerRadius="12"
+                    Padding="36,32"
+                    VerticalAlignment="Center"
+                    MinWidth="300">
+                <Border.Effect>
+                    <DropShadowEffect Color="#000000" BlurRadius="20" ShadowDepth="0" Opacity="0.08"/>
+                </Border.Effect>
+
+                <StackPanel>
+                    <!-- Logo / Titre -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,6">
+                        <Border Width="28" Height="28" CornerRadius="6" Background="{StaticResource AccentBrush}" Margin="0,0,8,0" VerticalAlignment="Center">
+                            <TextBlock Text="W" Foreground="White" FontWeight="Bold" FontSize="14"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+                        </Border>
+                        <TextBlock Text="WorkTogether"
+                                   FontSize="17" FontWeight="Bold" FontFamily="Segoe UI"
+                                   Foreground="{StaticResource TextMain}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Text="Connectez-vous à votre espace"
+                               FontSize="12" FontFamily="Segoe UI"
+                               Foreground="{StaticResource TextMuted}"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,24"/>
+
+                    <!-- E-mail -->
+                    <TextBlock Text="ADRESSE E-MAIL" Style="{StaticResource FieldLabel}"/>
+                    <TextBox x:Name="emailField" Style="{StaticResource FieldBox}" Margin="0,0,0,14"/>
+
+                    <!-- Mot de passe -->
+                    <TextBlock Text="MOT DE PASSE" Style="{StaticResource FieldLabel}"/>
+                    <PasswordBox x:Name="passwordField" Style="{StaticResource FieldPass}" Margin="0,0,0,14"/>
+
+                    <!-- Message d'erreur -->
+                    <Border x:Name="errorBanner"
+                            Background="{StaticResource ErrorBg}"
+                            BorderBrush="{StaticResource ErrorBorder}"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="10,8"
+                            Margin="0,0,0,14"
+                            Visibility="Collapsed">
+                        <TextBlock x:Name="errorField"
+                                   Text="E-mail ou mot de passe incorrect."
+                                   Foreground="{StaticResource ErrorText}"
+                                   FontSize="12" FontFamily="Segoe UI"
+                                   TextWrapping="Wrap"/>
+                    </Border>
+
+                    <!-- Bouton -->
+                    <Button Content="Se connecter" Style="{StaticResource PrimaryBtn}" Click="click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
 </Window>
