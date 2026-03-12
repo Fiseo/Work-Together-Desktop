@@ -19,11 +19,50 @@ namespace WorkTogether.WPF.AdminView
     /// <summary>
     /// Logique d'interaction pour AdminWindow.xaml
     /// </summary>
-    public partial class AdminWindow : AbstractWindow<User>
+    public partial class AdminWindow : Window, IWindow<User>
     {
-        public AdminWindow(User user, WorkTogetherContext? context = null) : base(user, context)
+        public User user { get; }
+        public WorkTogetherContext context { get; }
+        public AdminWindow(User user)
         {
+            this.user = user;
+            context = new WorkTogetherContext();
             InitializeComponent();
+            usernameLabel.Text = user.Username;
+        }
+
+        public AdminWindow(User user, WorkTogetherContext context)
+        {
+            this.user = user;
+            this.context = context;
+            InitializeComponent();
+            usernameLabel.Text = user.Username;
+        }
+
+        public void logout()
+        {
+            var main = new MainWindow(context);
+            main.Show();
+            Close();
+        }
+
+        private void Nav_Click(object sender, RoutedEventArgs e)
+        {
+            string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
+
+            mainContent.Content = tag switch
+            {
+                "dashboard" => new TextBlock { Text = "Tableau de bord", FontSize = 20, Margin = new Thickness(24) },
+                "bookings" => new TextBlock { Text = "Réservations", FontSize = 20, Margin = new Thickness(24) },
+                "units" => new TextBlock { Text = "Unités", FontSize = 20, Margin = new Thickness(24) },
+                // "ma_page" => new MaPage(),
+                _ => null
+            };
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            logout();
         }
     }
 }

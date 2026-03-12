@@ -3,10 +3,95 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WorkTogether.WPF.AdminView"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="Admin" Height="600" Width="900"
+        MinHeight="400" MinWidth="600"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="NavBtn" TargetType="Button">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#F3F4F6"/>
+                                <Setter Property="Foreground" Value="#111827"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="54"/>
+            <!-- Navbar -->
+            <RowDefinition Height="*"/>
+            <!-- Contenu -->
+        </Grid.RowDefinitions>
+
+        <!-- ═══ NAVBAR ═══ -->
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#E5E7EB"
+                BorderThickness="0,0,0,1">
+            <Grid Margin="16,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Logo -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Boutons nav -->
+                    <ColumnDefinition Width="Auto"/>
+                    <!-- Profil -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,24,0">
+                    <Border Width="26" Height="26" CornerRadius="6" Background="#1A56DB" Margin="0,0,8,0">
+                        <TextBlock Text="W" Foreground="White" FontWeight="Bold" FontSize="13"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+                    </Border>
+                    <TextBlock Text="WorkTogether" FontSize="14" FontWeight="SemiBold"
+                               FontFamily="Segoe UI" Foreground="#111827" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Boutons de navigation — ajoute tes boutons ici -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="Tableau de bord" Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="dashboard"/>
+                    <Button Content="Réservations"    Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="bookings"/>
+                    <Button Content="Unités"          Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="units"/>
+                    <!-- <Button Content="Nouveau bouton" Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="ma_page"/> -->
+                </StackPanel>
+
+                <!-- Profil / déconnexion -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock x:Name="usernameLabel"
+                               Text="Utilisateur"
+                               FontSize="13" FontFamily="Segoe UI"
+                               Foreground="#6B7280" VerticalAlignment="Center"
+                               Margin="0,0,12,0"/>
+                    <Button Content="Déconnexion" Style="{StaticResource NavBtn}" Click="Logout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ═══ CONTENU ═══ -->
+        <!-- Remplace ce ContentControl par tes Pages/UserControls -->
+        <ContentControl x:Name="mainContent" Grid.Row="1"/>
+
     </Grid>
 </Window>

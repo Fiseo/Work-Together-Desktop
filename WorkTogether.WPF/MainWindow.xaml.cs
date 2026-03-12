@@ -11,6 +11,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF.AccountantView;
+using WorkTogether.WPF.AdminView;
+using WorkTogether.WPF.TechnicianView;
 
 namespace WorkTogether.WPF
 {
@@ -24,6 +27,12 @@ namespace WorkTogether.WPF
         {
             InitializeComponent();
             this.context = new WorkTogetherContext();
+        }
+
+        public MainWindow(WorkTogetherContext context)
+        {
+            InitializeComponent();
+            this.context = context;
         }
 
         private void click(object sender, RoutedEventArgs e)
