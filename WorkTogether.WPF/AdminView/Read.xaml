@@ -61,19 +61,19 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Baie" Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="Intervention"     Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="4" Content="Réservation"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="6" Content="Utilisateur"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="8" Content="Technicien"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="10" Content="Particulier"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Baie" Style="{StaticResource PageBtn}" Click="click" Tag="bay"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="Intervention"     Style="{StaticResource PageBtn}" Click="click" Tag="serviceCall"/>
+        <Button Grid.Row="0" Grid.Column="4" Content="Réservation"    Style="{StaticResource PageBtn}" Click="click" Tag="booking"/>
+        <Button Grid.Row="0" Grid.Column="6" Content="Utilisateur"    Style="{StaticResource PageBtn}" Click="click" Tag="user"/>
+        <Button Grid.Row="0" Grid.Column="8" Content="Technicien"    Style="{StaticResource PageBtn}" Click="click" Tag="technician"/>
+        <Button Grid.Row="0" Grid.Column="10" Content="Particulier"    Style="{StaticResource PageBtn}" Click="click" Tag="individual"/>
 
-        <Button Grid.Row="2" Grid.Column="0" Content="Unité"   Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="Type d'intervention"   Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="2" Grid.Column="4" Content="Offre"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="2" Grid.Column="6" Content="Civilité"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="2" Grid.Column="8" Content="Comptable"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="2" Grid.Column="10" Content="Entreprise"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="Unité"   Style="{StaticResource PageBtn}" Click="click" Tag="unit"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="Type d'intervention"   Style="{StaticResource PageBtn}" Click="click" Tag="serviceCallType"/>
+        <Button Grid.Row="2" Grid.Column="4" Content="Offre"    Style="{StaticResource PageBtn}" Click="click" Tag="offer"/>
+        <Button Grid.Row="2" Grid.Column="6" Content="Civilité"    Style="{StaticResource PageBtn}" Click="click" Tag="civility"/>
+        <Button Grid.Row="2" Grid.Column="8" Content="Comptable"    Style="{StaticResource PageBtn}" Click="click" Tag="accountant"/>
+        <Button Grid.Row="2" Grid.Column="10" Content="Entreprise"    Style="{StaticResource PageBtn}" Click="click" Tag="company"/>
     </Grid>
 
 </UserControl>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.WPF.AdminView.ReadPage;
 
 namespace WorkTogether.WPF.AdminView
 {
@@ -29,7 +30,47 @@ namespace WorkTogether.WPF.AdminView
 
         private void click(object sender, RoutedEventArgs e)
         {
+            string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
 
+            switch (tag)
+            {
+                case "bay":
+                    //_window.mainFrame.Content = new Bay(_window);
+                    break;
+                case "serviceCall":
+                    //_window.mainFrame.Content = new ServiceCall(_window);
+                    break;
+                case "booking":
+                    //_window.mainFrame.Content = new Booking(_window);
+                    break;
+                case "user":
+                    //_window.mainFrame.Content = new User(_window);
+                    break;
+                case "technician":
+                    //_window.mainFrame.Content = new Technician(_window);
+                    break;
+                case "individual":
+                    //_window.mainFrame.Content = new Individual(_window);
+                    break;
+                case "unit":
+                    //_window.mainFrame.Content = new Unit(_window);
+                    break;
+                case "serviceCallType":
+                    //_window.mainFrame.Content = new ServiceCallType(_window);
+                    break;
+                case "offer":
+                    //_window.mainFrame.Content = new Offer(_window);
+                    break;
+                case "civility":
+                    _window.mainFrame.Content = new Civility(_window);
+                    break;
+                case "accountant":
+                    //_window.mainFrame.Content = new Accountant(_window);
+                    break;
+                case "company":
+                    //_window.mainFrame.Content = new Company(_window);
+                    break;
+            }
         }
     }
 }
