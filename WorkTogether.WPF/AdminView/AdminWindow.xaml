@@ -71,9 +71,8 @@
 
                 <!-- Boutons de navigation — ajoute tes boutons ici -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <Button Content="Tableau de bord" Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="dashboard"/>
-                    <Button Content="Réservations"    Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="bookings"/>
-                    <Button Content="Unités"          Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="units"/>
+                    <Button Content="Consultation" Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="read"/>
+                    <Button Content="Modification"    Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="write"/>
                     <!-- <Button Content="Nouveau bouton" Style="{StaticResource NavBtn}" Click="Nav_Click" Tag="ma_page"/> -->
                 </StackPanel>
 
@@ -89,9 +88,9 @@
             </Grid>
         </Border>
 
-        <!-- ═══ CONTENU ═══ -->
-        <!-- Remplace ce ContentControl par tes Pages/UserControls -->
-        <ContentControl x:Name="mainContent" Grid.Row="1"/>
+        <Frame x:Name="mainFrame"
+               Grid.Row="1"
+               NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

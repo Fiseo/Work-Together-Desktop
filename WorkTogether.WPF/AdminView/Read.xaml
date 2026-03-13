@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="WorkTogether.WPF.AdminView.Read"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+        <Style x:Key="PageBtn" TargetType="Button">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bg"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#F3F4F6"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bg" Property="Background" Value="#E5E7EB"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="bg" Property="Opacity" Value="0.4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="0" Content="Baie" Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="Intervention"     Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="4" Content="Réservation"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="6" Content="Utilisateur"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="8" Content="Technicien"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="10" Content="Particulier"    Style="{StaticResource PageBtn}" Click="click"/>
+
+        <Button Grid.Row="2" Grid.Column="0" Content="Unité"   Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="Type d'intervention"   Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="2" Grid.Column="4" Content="Offre"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="2" Grid.Column="6" Content="Civilité"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="2" Grid.Column="8" Content="Comptable"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="2" Grid.Column="10" Content="Entreprise"    Style="{StaticResource PageBtn}" Click="click"/>
+    </Grid>
+
+</UserControl>
