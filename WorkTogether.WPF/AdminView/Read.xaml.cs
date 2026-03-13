@@ -38,7 +38,7 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = new Bay(_window);
                     break;
                 case "serviceCall":
-                    //_window.mainFrame.Content = new ServiceCall(_window);
+                    _window.mainFrame.Content = new ServiceCall(_window);
                     break;
                 case "booking":
                     //_window.mainFrame.Content = new Booking(_window);

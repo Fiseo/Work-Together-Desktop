@@ -18,4 +18,6 @@ public partial class Unit
     public ICollection<BookingUnit> BookingUnits { get; set; } = new List<BookingUnit>();
 
     public ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
+
+    public string FullLabel => Bay.Label + "-" + Label;
 }
