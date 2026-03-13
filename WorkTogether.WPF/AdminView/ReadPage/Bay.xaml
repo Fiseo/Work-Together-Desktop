@@ -16,9 +16,9 @@
           Background="White" BorderBrush="#E5E7EB" RowBackground="White" AlternatingRowBackground="#F9FAFB"
           GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#E5E7EB" HeadersVisibility="Column" Margin="0,0,20,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="60"/>
-                <DataGridTextColumn Header="Label" Binding="{Binding Label}" Width="150" FontWeight="SemiBold"/>
-                <DataGridTextColumn Header="Nombre d'unité" Binding="{Binding NumberUnit}" Width="150" FontWeight="SemiBold"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto"/>
+                <DataGridTextColumn Header="Label" Binding="{Binding Label}" Width="auto" FontWeight="SemiBold"/>
+                <DataGridTextColumn Header="Nombre d'unité" Binding="{Binding NumberUnit}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

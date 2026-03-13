@@ -17,7 +17,7 @@
           GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#E5E7EB" HeadersVisibility="Column" Margin="0,0,20,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" Width="auto" FontWeight="SemiBold"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" Width="auto"/>
                 <DataGridTextColumn Header="Technicien" Binding="{Binding Technician.Label}" Width="auto" FontWeight="SemiBold"/>
                 <DataGridTextColumn Header="Unité concernée" Binding="{Binding Unit.FullLabel}" Width="auto" FontWeight="SemiBold"/>
                 <DataGridTextColumn Header="Type d'intervention" Binding="{Binding Type.Label}" Width="auto" FontWeight="SemiBold"/>
