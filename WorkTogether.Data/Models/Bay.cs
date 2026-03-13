@@ -10,4 +10,6 @@ public partial class Bay
     public string Label { get; set; } = null!;
 
     public ICollection<Unit> Units { get; set; } = new List<Unit>();
+
+    public int NumberUnit { get => Units.Count; }
 }

@@ -35,7 +35,7 @@ namespace WorkTogether.WPF.AdminView
             switch (tag)
             {
                 case "bay":
-                    //_window.mainFrame.Content = new Bay(_window);
+                    _window.mainFrame.Content = new Bay(_window);
                     break;
                 case "serviceCall":
                     //_window.mainFrame.Content = new ServiceCall(_window);
