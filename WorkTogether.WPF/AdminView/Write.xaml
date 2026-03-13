@@ -57,11 +57,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="Utilisateur" Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="2" Content="Baie"     Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="4" Content="Civilité"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="6" Content="Offre"    Style="{StaticResource PageBtn}" Click="click"/>
-        <Button Grid.Row="0" Grid.Column="8" Content="Type d'intervention"    Style="{StaticResource PageBtn}" Click="click"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Utilisateur" Style="{StaticResource PageBtn}" Click="click" Tag="user"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="Baie"     Style="{StaticResource PageBtn}" Click="click" Tag="bay"/>
+        <Button Grid.Row="0" Grid.Column="4" Content="Civilité"    Style="{StaticResource PageBtn}" Click="click" Tag="civility"/>
+        <Button Grid.Row="0" Grid.Column="6" Content="Offre"    Style="{StaticResource PageBtn}" Click="click" Tag="offer"/>
+        <Button Grid.Row="0" Grid.Column="8" Content="Type d'intervention"    Style="{StaticResource PageBtn}" Click="click" Tag="serviceCall"/>
     </Grid>
 
 </UserControl>

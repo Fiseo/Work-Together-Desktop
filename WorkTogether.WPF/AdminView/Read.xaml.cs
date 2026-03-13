@@ -20,8 +20,10 @@ namespace WorkTogether.WPF.AdminView
     /// </summary>
     public partial class Read : UserControl
     {
-        public Read()
+        private AdminWindow _window;
+        public Read(AdminWindow parent)
         {
+            _window = parent;
             InitializeComponent();
         }
 

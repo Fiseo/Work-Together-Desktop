@@ -30,7 +30,7 @@ namespace WorkTogether.WPF.AdminView
             context = new WorkTogetherContext();
             InitializeComponent();
             usernameLabel.Text = user.Username;
-            mainFrame.Content = new Read();
+            mainFrame.Content = new Read(this);
         }
 
         public AdminWindow(User user, WorkTogetherContext context)
@@ -39,7 +39,7 @@ namespace WorkTogether.WPF.AdminView
             this.context = context;
             InitializeComponent();
             usernameLabel.Text = user.Username;
-            mainFrame.Content = new Read();
+            mainFrame.Content = new Read(this);
         }
 
         public void logout()
@@ -56,10 +56,10 @@ namespace WorkTogether.WPF.AdminView
             switch (tag)
             {
                 case "read":
-                    mainFrame.Content = new Read();
+                    mainFrame.Content = new Read(this);
                     break;
                 case "write":
-                    mainFrame.Content = new Write();
+                    mainFrame.Content = new Write(this);
                     break;
             }
         }
