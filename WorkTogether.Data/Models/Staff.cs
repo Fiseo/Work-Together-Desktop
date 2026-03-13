@@ -8,5 +8,7 @@
 
         public int? CivilityId { get; set; }
         public Civility? Civility { get; set; }
+
+        public override string Label => FirstName + " " + LastName;
     }
 }

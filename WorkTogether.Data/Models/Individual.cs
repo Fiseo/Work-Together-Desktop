@@ -13,5 +13,7 @@ namespace WorkTogether.Data.Models
         public DateTime? BirthDate { get; set; }
 
         public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+
+        public override string Label => FirstName + " " + LastName;
     }
 }
