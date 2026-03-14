@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class Booking
+public partial class Booking: DbEntity
 {
     public int Id { get; set; }
 

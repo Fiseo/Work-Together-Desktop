@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class Bay
+public partial class Bay: DbEntity
 {
     public int Id { get; set; }
 

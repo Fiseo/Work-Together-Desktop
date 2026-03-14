@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class ServiceCall
+public partial class ServiceCall : DbEntity
 {
     public int Id { get; set; }
 

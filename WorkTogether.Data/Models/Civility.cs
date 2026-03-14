@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class Civility
+public partial class Civility : DbEntity
 {
     public int Id { get; set; }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class BookingUnit
+public partial class BookingUnit : DbEntity
 {
     public int Id { get; set; }
 

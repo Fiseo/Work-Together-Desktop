@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class User
+public partial class User : DbEntity
 {
     public int Id { get; set; }
 
