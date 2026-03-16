@@ -71,7 +71,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCallType":
-                    //_window.mainFrame.Content = new ServiceCallType(_window);
+                    page = new PageList("Liste des Types d'interventions", _window);
+                    page.setList<Data.Models.ServiceCallType>(new ServiceCallType(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     //_window.mainFrame.Content = new Offer(_window);
