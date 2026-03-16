@@ -91,7 +91,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "company":
-                    //_window.mainFrame.Content = new Company(_window);
+                    page = new PageList("Liste des Entreprises", _window);
+                    page.setList<Data.Models.Company>(new Company(page));
+                    _window.mainFrame.Content = page;
                     break;
             }
         }
