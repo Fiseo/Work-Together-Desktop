@@ -76,7 +76,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "offer":
-                    //_window.mainFrame.Content = new Offer(_window);
+                    page = new PageList("Liste des Offres", _window);
+                    page.setList<Data.Models.Offer>(new Offer(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "civility":
                     page = new PageList("Liste des Civilités", _window);
