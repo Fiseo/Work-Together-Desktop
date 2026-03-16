@@ -61,7 +61,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "individual":
-                    //_window.mainFrame.Content = new Individual(_window);
+                    page = new PageList("Liste des Particuliers", _window);
+                    page.setList<Data.Models.Individual>(new Individual(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "unit":
                     //_window.mainFrame.Content = new Unit(_window);
