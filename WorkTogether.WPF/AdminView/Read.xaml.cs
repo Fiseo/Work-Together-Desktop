@@ -66,7 +66,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "unit":
-                    //_window.mainFrame.Content = new Unit(_window);
+                    page = new PageList("Liste des Unités", _window);
+                    page.setList<Data.Models.Unit>(new Unit(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "serviceCallType":
                     //_window.mainFrame.Content = new ServiceCallType(_window);

@@ -20,4 +20,15 @@ public partial class Unit : DbEntity
     public ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
 
     public string FullLabel => Bay.Label + "-" + Label;
+
+    public string Status
+    {
+        get
+        {
+            bool HaveProblem = System.Convert.ToBoolean(this.HaveProblem);
+            if (HaveProblem)
+                return "Incident";
+            return "Ok";
+        }
+    }
 }
