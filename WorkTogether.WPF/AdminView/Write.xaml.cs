@@ -49,7 +49,10 @@ namespace WorkTogether.WPF.AdminView
                     //_window.mainFrame.Content = new Offer(_window);
                     break;
                 case "serviceCall":
-                    //_window.mainFrame.Content = new ServiceCall(_window);
+                    page = new PageList("Modification des Civilités", _window);
+                    page.setList<Data.Models.ServiceCallType>(new List.ServiceCallType(page));
+                    page.setForm<Data.Models.ServiceCallType>(new Form.ServiceCallType(page));
+                    _window.mainFrame.Content = page;
                     break;
             }
         }

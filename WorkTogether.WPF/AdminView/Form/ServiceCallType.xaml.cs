@@ -12,20 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CivilityData = WorkTogether.Data.Models.Civility;
+using ServiceCallTypeData = WorkTogether.Data.Models.ServiceCallType;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
     /// <summary>
-    /// Logique d'interaction pour Civility.xaml
+    /// Logique d'interaction pour ServiceCallType.xaml
     /// </summary>
-    public partial class Civility : UserControl, IForm<CivilityData>
+    public partial class ServiceCallType : UserControl, IForm<ServiceCallTypeData>
     {
         private PageList _page;
-        PageList IForm<CivilityData>.page => _page;
+        PageList IForm<ServiceCallTypeData>.page => _page;
 
-        private CivilityData? _SelectedData = null;
-        public CivilityData? SelectedData
+        private ServiceCallTypeData? _SelectedData = null;
+        public ServiceCallTypeData? SelectedData
         {
             get => _SelectedData;
             set
@@ -35,7 +35,7 @@ namespace WorkTogether.WPF.AdminView.Form
             }
         }
 
-        public Civility(PageList page)
+        public ServiceCallType(PageList page)
         {
             _page = page;
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace WorkTogether.WPF.AdminView.Form
             if (_SelectedData == null)
                 return;
             TxtNewLabel.Text = _SelectedData.Label;
-            TitleForm.Text = "Modifier une civilité";
+            TitleForm.Text = "Modifier un type d'intervention";
         }
 
         public void Save_Click(object sender, RoutedEventArgs e)
@@ -59,22 +59,22 @@ namespace WorkTogether.WPF.AdminView.Form
 
             if (_SelectedData == null)
             {
-                var civility = new CivilityData
+                var serviceCallType = new ServiceCallTypeData
                 {
                     Label = label
                 };
-                _page.window.context.CivilitySet.Add(civility);
+                _page.window.context.ServiceCallTypeSet.Add(serviceCallType);
             }
             else
             {
                 _SelectedData.Label = label;
-                _page.window.context.CivilitySet.Update(_SelectedData);
+                _page.window.context.ServiceCallTypeSet.Update(_SelectedData);
             }
 
             _page.window.context.SaveChanges();
             TxtNewLabel.Clear();
-            TitleForm.Text = "Créer une nouvelle civilité";
-            ((IForm<CivilityData>)this).loadList();
+            TitleForm.Text = "Créer un nouveau type d'intervention";
+            ((IForm<ServiceCallTypeData>)this).loadList();
         }
     }
 }
