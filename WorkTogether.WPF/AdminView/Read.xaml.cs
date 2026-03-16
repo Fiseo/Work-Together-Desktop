@@ -46,7 +46,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "booking":
-                    //_window.mainFrame.Content = new Booking(_window);
+                    page = new PageList("Liste des Réservations", _window);
+                    page.setList<Data.Models.Booking>(new Booking(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "user":
                     //_window.mainFrame.Content = new User(_window);
