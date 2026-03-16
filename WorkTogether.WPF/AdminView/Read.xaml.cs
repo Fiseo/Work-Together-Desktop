@@ -36,7 +36,9 @@ namespace WorkTogether.WPF.AdminView
             switch (tag)
             {
                 case "bay":
-                    //_window.mainFrame.Content = new Bay(_window);
+                    PageList? page = new PageList("Liste des Baies", _window);
+                    page.setList<Data.Models.Bay>(new Bay(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
                     //_window.mainFrame.Content = new ServiceCall(_window);
@@ -63,7 +65,7 @@ namespace WorkTogether.WPF.AdminView
                     //_window.mainFrame.Content = new Offer(_window);
                     break;
                 case "civility":
-                    PageList page = new PageList("Liste des Civilités", _window);
+                    page = new PageList("Liste des Civilités", _window);
                     page.setList<Data.Models.Civility>(new Civility(page));
                     _window.mainFrame.Content = page;
                     break;
