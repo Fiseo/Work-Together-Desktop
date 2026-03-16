@@ -17,6 +17,7 @@ GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#E5E7EB" HeadersVisib
                 <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" Width="auto"/>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" Width="auto"/>
                 <DataGridTextColumn Header="Civilité" Binding="{Binding Civility.Label}" Width="auto"/>
+                <DataGridTextColumn Header="Date de Naissance" Binding="{Binding BirthDate, StringFormat={}{0:dd/MM/yyyy}}" Width="auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
