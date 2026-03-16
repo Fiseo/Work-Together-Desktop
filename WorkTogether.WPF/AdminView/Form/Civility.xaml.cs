@@ -44,7 +44,9 @@ namespace WorkTogether.WPF.AdminView.Form
 
         public void reload()
         {
-            throw new NotImplementedException();
+            if (_SelectedData == null)
+                return;
+            TxtNewLabel.Text = _SelectedData.Label;
         }
 
         public void Save_Click(object sender, RoutedEventArgs e)
