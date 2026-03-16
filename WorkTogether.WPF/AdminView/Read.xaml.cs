@@ -51,12 +51,14 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "user":
-                    page = new PageList("Liste des Users", _window);
+                    page = new PageList("Liste des Utilisateurs", _window);
                     page.setList<Data.Models.User>(new User(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "technician":
-                    //_window.mainFrame.Content = new Technician(_window);
+                    page = new PageList("Liste des Techniciens", _window);
+                    page.setList<Data.Models.Technician>(new Technician(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "individual":
                     //_window.mainFrame.Content = new Individual(_window);
