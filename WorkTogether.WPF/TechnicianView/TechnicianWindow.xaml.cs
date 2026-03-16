@@ -19,7 +19,7 @@ namespace WorkTogether.WPF.TechnicianView
     /// <summary>
     /// Logique d'interaction pour TechnicianWindow.xaml
     /// </summary>
-    public partial class TechnicianWindow : Window
+    public partial class TechnicianWindow : Window, IWindow<Technician>, IWindow
     {
         public Technician user { get; }
         public WorkTogetherContext context { get; }

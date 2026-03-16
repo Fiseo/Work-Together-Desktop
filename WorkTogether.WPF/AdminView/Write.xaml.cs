@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WorkTogether.WPF.AdminView.WritePage;
 
 namespace WorkTogether.WPF.AdminView
 {
@@ -41,7 +40,10 @@ namespace WorkTogether.WPF.AdminView
                     //_window.mainFrame.Content = new Bay(_window);
                     break;
                 case "civility":
-                    _window.mainFrame.Content = new Civility(_window);
+                    PageList page = new PageList("Modification des Civilités", _window);
+                    page.setList<Data.Models.Civility>(new List.Civility(page));
+                    page.setForm<Data.Models.Civility>(new Form.Civility(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     //_window.mainFrame.Content = new Offer(_window);

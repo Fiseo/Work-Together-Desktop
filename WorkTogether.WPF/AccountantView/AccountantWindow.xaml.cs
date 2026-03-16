@@ -19,7 +19,7 @@ namespace WorkTogether.WPF.AccountantView
     /// <summary>
     /// Logique d'interaction pour AccountantWindow.xaml
     /// </summary>
-    partial class AccountantWindow : Window, IWindow<Accountant>
+    partial class AccountantWindow : Window, IWindow<Accountant>, IWindow
     {
         public Accountant user { get; }
         public WorkTogetherContext context { get; }

@@ -20,7 +20,7 @@ namespace WorkTogether.WPF.AdminView
     /// <summary>
     /// Logique d'interaction pour AdminWindow.xaml
     /// </summary>
-    public partial class AdminWindow : Window, IWindow<User>
+    public partial class AdminWindow : Window, IWindow<User>, IWindow
     {
         public User user { get; }
         public WorkTogetherContext context { get; }

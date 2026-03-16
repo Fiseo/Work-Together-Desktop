@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WorkTogether.WPF.AdminView.ReadPage;
+using WorkTogether.Data;
+using WorkTogether.WPF.AdminView.List;
 
 namespace WorkTogether.WPF.AdminView
 {
@@ -35,13 +36,13 @@ namespace WorkTogether.WPF.AdminView
             switch (tag)
             {
                 case "bay":
-                    _window.mainFrame.Content = new Bay(_window);
+                    //_window.mainFrame.Content = new Bay(_window);
                     break;
                 case "serviceCall":
-                    _window.mainFrame.Content = new ServiceCall(_window);
+                    //_window.mainFrame.Content = new ServiceCall(_window);
                     break;
                 case "booking":
-                    _window.mainFrame.Content = new Booking(_window);
+                    //_window.mainFrame.Content = new Booking(_window);
                     break;
                 case "user":
                     //_window.mainFrame.Content = new User(_window);
@@ -62,7 +63,9 @@ namespace WorkTogether.WPF.AdminView
                     //_window.mainFrame.Content = new Offer(_window);
                     break;
                 case "civility":
-                    _window.mainFrame.Content = new Civility(_window);
+                    PageList page = new PageList("Liste des Civilités", _window);
+                    page.setList<Data.Models.Civility>(new Civility(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "accountant":
                     //_window.mainFrame.Content = new Accountant(_window);
