@@ -86,7 +86,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "accountant":
-                    //_window.mainFrame.Content = new Accountant(_window);
+                    page = new PageList("Liste des Comptables", _window);
+                    page.setList<Data.Models.Accountant>(new Accountant(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "company":
                     //_window.mainFrame.Content = new Company(_window);
