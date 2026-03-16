@@ -41,7 +41,9 @@ namespace WorkTogether.WPF.AdminView
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
-                    //_window.mainFrame.Content = new ServiceCall(_window);
+                    page = new PageList("Liste des Interventions", _window);
+                    page.setList<Data.Models.ServiceCall>(new ServiceCall(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "booking":
                     //_window.mainFrame.Content = new Booking(_window);
