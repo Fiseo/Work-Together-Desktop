@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using UnitData = WorkTogether.Data.Models.Unit;
 
 namespace WorkTogether.WPF.AdminView.List
@@ -23,7 +25,9 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class Unit : UserControl, IList<UnitData>
     {
         private PageList _page;
+        private EntityRepository<UnitData> _repository;
         PageList IList<UnitData>.page => _page;
+        EntityRepository<UnitData> IList<UnitData>.repository => _repository;
 
         private UnitData _data;
         public UnitData Selected_Data => _data;
@@ -32,6 +36,7 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new UnitData();
+            _repository = new UnitRepository(_page.window.context);
             InitializeComponent();
             load();
         }
@@ -46,9 +51,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _page.window.context.UnitSet
-                .Include(u => u.Bay)
-                .ToList();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }

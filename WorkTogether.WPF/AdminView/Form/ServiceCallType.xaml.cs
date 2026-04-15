@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
 using ServiceCallTypeData = WorkTogether.Data.Models.ServiceCallType;
 
 namespace WorkTogether.WPF.AdminView.Form
@@ -22,7 +23,9 @@ namespace WorkTogether.WPF.AdminView.Form
     public partial class ServiceCallType : UserControl, IForm<ServiceCallTypeData>
     {
         private PageList _page;
+        private EntityRepository<ServiceCallTypeData> _repository;
         PageList IForm<ServiceCallTypeData>.page => _page;
+        EntityRepository<ServiceCallTypeData> IForm<ServiceCallTypeData>.repository => _repository;
 
         private ServiceCallTypeData? _SelectedData = null;
         public ServiceCallTypeData? SelectedData

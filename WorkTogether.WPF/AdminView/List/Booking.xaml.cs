@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using BookingData = WorkTogether.Data.Models.Booking;
 
 namespace WorkTogether.WPF.AdminView.List
@@ -23,7 +25,10 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class Booking : UserControl, IList<BookingData>
     {
         private PageList _page;
+        private EntityRepository<BookingData> _repository;
         PageList IList<BookingData>.page => _page;
+        EntityRepository<BookingData> IList<BookingData>.repository => _repository;
+
 
         private BookingData _data;
         public BookingData Selected_Data => _data;
@@ -32,6 +37,7 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new BookingData();
+            _repository = new BookingRepository(_page.window.context);
             InitializeComponent();
             load();
         }
@@ -46,11 +52,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _page.window.context.BookingSet
-                .Include(b => b.Company)
-                .Include(b => b.Individual)
-                .Include(b => b.Offer)
-                .ToList();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }

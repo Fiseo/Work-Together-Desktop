@@ -7,6 +7,7 @@ namespace WorkTogether.WPF
         where E : DbEntity
     {
         PageList page { get; }
+        EntityRepository<E> repository { get; }
         E? SelectedData { get; set; }
         void reload();
         void Save_Click(object sender, RoutedEventArgs e);

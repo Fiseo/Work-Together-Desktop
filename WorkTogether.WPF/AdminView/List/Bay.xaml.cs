@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using BayData = WorkTogether.Data.Models.Bay;
 
 namespace WorkTogether.WPF.AdminView.List
@@ -23,7 +25,10 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class Bay : UserControl, IList<BayData>
     {
         private PageList _page;
+        private EntityRepository<BayData> _repository;
         PageList IList<BayData>.page => _page;
+        EntityRepository<BayData> IList<BayData>.repository => _repository;
+
 
         private BayData _data;
         public BayData Selected_Data => _data;
@@ -32,6 +37,7 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new BayData();
+            _repository = new BayRepository(_page.window.context);
             InitializeComponent();
             load();
         }
@@ -46,9 +52,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _page.window.context.BaySet
-                .Include(b => b.Units)
-                .ToList();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }

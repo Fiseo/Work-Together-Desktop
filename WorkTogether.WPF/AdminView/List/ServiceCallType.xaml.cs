@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using ServiceCallTypeData = WorkTogether.Data.Models.ServiceCallType;
 
 namespace WorkTogether.WPF.AdminView.List
@@ -22,7 +24,11 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class ServiceCallType : UserControl, IList<ServiceCallTypeData>
     {
         private PageList _page;
+        private EntityRepository<ServiceCallTypeData> _repository;
+
         PageList IList<ServiceCallTypeData>.page => _page;
+        EntityRepository<ServiceCallTypeData> IList<ServiceCallTypeData>.repository => _repository;
+
 
         private ServiceCallTypeData _data;
         public ServiceCallTypeData Selected_Data => _data;
@@ -31,6 +37,7 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new ServiceCallTypeData();
+            _repository = new ServiceCallTypeRepository(_page.window.context);
             InitializeComponent();
             load();
         }
@@ -45,7 +52,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _page.window.context.ServiceCallTypeSet.ToList();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }

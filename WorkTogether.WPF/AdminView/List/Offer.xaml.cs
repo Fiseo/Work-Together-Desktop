@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using OfferData = WorkTogether.Data.Models.Offer;
 
 namespace WorkTogether.WPF.AdminView.List
@@ -22,7 +24,11 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class Offer : UserControl, IList<OfferData>
     {
         private PageList _page;
+        private EntityRepository<OfferData> _repository;
+
         PageList IList<OfferData>.page => _page;
+        EntityRepository<OfferData> IList<OfferData>.repository => _repository;
+
 
         private OfferData _data;
         public OfferData Selected_Data => _data;
@@ -31,6 +37,7 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new OfferData();
+            _repository = new OfferRepository(_page.window.context);
             InitializeComponent();
             load();
         }
@@ -45,7 +52,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _page.window.context.OfferSet.ToList();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }

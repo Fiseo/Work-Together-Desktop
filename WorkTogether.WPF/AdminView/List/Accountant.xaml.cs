@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using AccountantData = WorkTogether.Data.Models.Accountant;
 
 namespace WorkTogether.WPF.AdminView.List
@@ -23,7 +25,10 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class Accountant : UserControl, IList<AccountantData>
     {
         private PageList _page;
+        private EntityRepository<AccountantData> _repository;
         PageList IList<AccountantData>.page => _page;
+        EntityRepository<AccountantData> IList<AccountantData>.repository => _repository;
+
 
         private AccountantData _data;
         public AccountantData Selected_Data => _data;
@@ -32,6 +37,7 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new AccountantData();
+            _repository = new AccountantRepository(_page.window.context);
             InitializeComponent();
             load();
         }
@@ -46,9 +52,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _page.window.context.AccountantSet
-                .Include(a => a.Civility)
-                .ToList();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }
