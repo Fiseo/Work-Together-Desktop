@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace WorkTogether.Data.Models;
 
-public partial class User : DbEntity
+public class User : DbEntity
 {
     public int Id { get; set; }
 
@@ -19,4 +19,9 @@ public partial class User : DbEntity
     public string Type { get; set; } = null!;
 
     public virtual string Label => "none";
+
+    public override bool isDeletable()
+    {
+        return false;
+    }
 }

@@ -5,5 +5,10 @@
         public string? Review { get; set; }
 
         public int? Rating { get; set; }
+
+        public override bool isDeletable()
+        {
+            return false;
+        }
     }
 }

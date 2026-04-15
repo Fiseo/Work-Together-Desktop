@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using CivilityData = WorkTogether.Data.Models.Civility;
 
 namespace WorkTogether.WPF.AdminView.Form
@@ -22,7 +24,10 @@ namespace WorkTogether.WPF.AdminView.Form
     public partial class Civility : UserControl, IForm<CivilityData>
     {
         private PageList _page;
+        private CivilityRepository _repository;
         PageList IForm<CivilityData>.page => _page;
+        EntityRepository<CivilityData> IForm<CivilityData>.repository => _repository;
+
 
         private CivilityData? _SelectedData = null;
         public CivilityData? SelectedData
@@ -38,6 +43,7 @@ namespace WorkTogether.WPF.AdminView.Form
         public Civility(PageList page)
         {
             _page = page;
+            _repository = new CivilityRepository(_page.window.context);
             InitializeComponent();
         }
 
@@ -59,19 +65,15 @@ namespace WorkTogether.WPF.AdminView.Form
 
             if (_SelectedData == null)
             {
-                var civility = new CivilityData
+                _SelectedData = new CivilityData
                 {
                     Label = label
                 };
-                _page.window.context.CivilitySet.Add(civility);
             }
             else
-            {
                 _SelectedData.Label = label;
-                _page.window.context.CivilitySet.Update(_SelectedData);
-            }
 
-            _page.window.context.SaveChanges();
+            _repository.save(_SelectedData);
             TxtNewLabel.Clear();
             TitleForm.Text = "Créer une nouvelle civilité";
             ((IForm<CivilityData>)this).loadList();
