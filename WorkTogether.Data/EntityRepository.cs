@@ -27,7 +27,7 @@ namespace WorkTogether.Data
 
         protected abstract void setDbSet();
 
-        public void save(E entity)
+        public virtual void save(E entity)
         {
             if (entity.isValid())
             {
@@ -38,7 +38,7 @@ namespace WorkTogether.Data
             throw new Exception("This entity is invalid !");
         }
 
-        public void delete(E entity)
+        public virtual void delete(E entity)
         {
             if(entity.isDeletable())
             {
