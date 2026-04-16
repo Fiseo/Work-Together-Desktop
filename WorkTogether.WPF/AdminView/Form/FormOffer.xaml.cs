@@ -17,22 +17,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using OfferData = WorkTogether.Data.Models.Offer;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
     /// <summary>
     /// Logique d'interaction pour Offer.xaml
     /// </summary>
-    public partial class Offer : UserControl, IForm<OfferData>
+    public partial class FormOffer : UserControl, IForm<Offer>
     {
         private PageList _page;
-        private EntityRepository<OfferData> _repository;
-        PageList IForm<OfferData>.page => _page;
-        EntityRepository<OfferData> IForm<OfferData>.repository => _repository;
+        private EntityRepository<Offer> _repository;
+        PageList IForm<Offer>.page => _page;
+        EntityRepository<Offer> IForm<Offer>.repository => _repository;
 
-        private OfferData? _SelectedData = null;
-        public OfferData? SelectedData
+        private Offer? _SelectedData = null;
+        public Offer? SelectedData
         {
             get => _SelectedData;
             set
@@ -42,13 +42,12 @@ namespace WorkTogether.WPF.AdminView.Form
             }
         }
 
-        public Offer(PageList page)
+        public FormOffer(PageList page)
         {
             _page = page;
             _repository = new OfferRepository(_page.window.context);
             InitializeComponent();
         }
-
 
         public void reload()
         {
@@ -70,7 +69,7 @@ namespace WorkTogether.WPF.AdminView.Form
             Delete.Visibility = Visibility.Collapsed;
             Clear.Visibility = Visibility.Collapsed;
             TitleForm.Text = "Créer une nouvelle offre";
-            ((IForm<OfferData>)this).loadList();
+            ((IForm<Offer>)this).loadList();
         }
 
         public void Save_Click(object sender, RoutedEventArgs e)
@@ -86,7 +85,7 @@ namespace WorkTogether.WPF.AdminView.Form
                 _SelectedData.IsActive = false;
                 _repository.save(_SelectedData);
             }
-            _SelectedData = new OfferData();
+            _SelectedData = new Offer();
 
             _SelectedData.Label = label;
             _SelectedData.UnitProvided = UnitProvided;
@@ -97,10 +96,10 @@ namespace WorkTogether.WPF.AdminView.Form
             _repository.save(_SelectedData);
             clear();
             TitleForm.Text = "Créer une nouvelle offre";
-            ((IForm<OfferData>)this).loadList();
+            ((IForm<Offer>)this).loadList();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<OfferData>.Static_Delete(this);
+        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<Offer>.Static_Delete(this);
 
         public void Clear_Click(object sender, RoutedEventArgs e) => clear();
     }

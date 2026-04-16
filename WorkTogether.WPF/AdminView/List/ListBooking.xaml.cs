@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,45 +15,44 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using OfferData = WorkTogether.Data.Models.Offer;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Offer.xaml
+    /// Logique d'interaction pour Booking.xaml
     /// </summary>
-    public partial class Offer : UserControl, IList<OfferData>
+    public partial class ListBooking : UserControl, IList<Booking>
     {
         private PageList _page;
-        private OfferRepository _repository;
+        private EntityRepository<Booking> _repository;
+        PageList IList<Booking>.page => _page;
+        EntityRepository<Booking> IList<Booking>.repository => _repository;
 
-        PageList IList<OfferData>.page => _page;
-        EntityRepository<OfferData> IList<OfferData>.repository => _repository;
 
+        private Booking _data;
+        public Booking Selected_Data => _data;
 
-        private OfferData _data;
-        public OfferData Selected_Data => _data;
-
-        public Offer(PageList page)
+        public ListBooking(PageList page)
         {
             _page = page;
-            _data = new OfferData();
-            _repository = new OfferRepository(_page.window.context);
+            _data = new Booking();
+            _repository = new BookingRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as OfferData;
+            _data = DataGrid.SelectedItem as Booking;
 
             if (_data != null)
-                _page.setSelectedData<OfferData>(_data);
+                _page.setSelectedData<Booking>(_data);
         }
 
         public void load()
         {
-            DataGrid.ItemsSource = _repository.findAllActive();
+            DataGrid.ItemsSource = _repository.findAll();
         }
     }
 }

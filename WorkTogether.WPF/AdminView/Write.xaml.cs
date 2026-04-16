@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView
 {
@@ -41,20 +42,20 @@ namespace WorkTogether.WPF.AdminView
                     break;
                 case "civility":
                     PageList page = new PageList("Modification des Civilités", _window);
-                    page.setList<Data.Models.Civility>(new List.Civility(page));
-                    page.setForm<Data.Models.Civility>(new Form.Civility(page));
+                    page.setList<Civility>(new List.ListCivility(page));
+                    page.setForm<Civility>(new Form.FormCivility(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     page = new PageList("Modification des Offres", _window);
-                    page.setList<Data.Models.Offer>(new List.Offer(page));
-                    page.setForm<Data.Models.Offer>(new Form.Offer(page));
+                    page.setList<Offer>(new List.ListOffer(page));
+                    page.setForm<Offer>(new Form.FormOffer(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<Data.Models.ServiceCallType>(new List.ServiceCallType(page));
-                    page.setForm<Data.Models.ServiceCallType>(new Form.ServiceCallType(page));
+                    page.setList<ServiceCallType>(new List.ListServiceCallType(page));
+                    page.setForm<ServiceCallType>(new Form.FormServiceCallType(page));
                     _window.mainFrame.Content = page;
                     break;
             }

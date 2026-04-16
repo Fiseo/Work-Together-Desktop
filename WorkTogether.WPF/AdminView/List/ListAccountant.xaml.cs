@@ -15,39 +15,39 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using BookingData = WorkTogether.Data.Models.Booking;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Booking.xaml
+    /// Logique d'interaction pour Accountant.xaml
     /// </summary>
-    public partial class Booking : UserControl, IList<BookingData>
+    public partial class ListAccountant : UserControl, IList<Accountant>
     {
         private PageList _page;
-        private EntityRepository<BookingData> _repository;
-        PageList IList<BookingData>.page => _page;
-        EntityRepository<BookingData> IList<BookingData>.repository => _repository;
+        private EntityRepository<Accountant> _repository;
+        PageList IList<Accountant>.page => _page;
+        EntityRepository<Accountant> IList<Accountant>.repository => _repository;
 
 
-        private BookingData _data;
-        public BookingData Selected_Data => _data;
+        private Accountant _data;
+        public Accountant Selected_Data => _data;
 
-        public Booking(PageList page)
+        public ListAccountant(PageList page)
         {
             _page = page;
-            _data = new BookingData();
-            _repository = new BookingRepository(_page.window.context);
+            _data = new Accountant();
+            _repository = new AccountantRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as BookingData;
+            _data = DataGrid.SelectedItem as Accountant;
 
             if (_data != null)
-                _page.setSelectedData<BookingData>(_data);
+                _page.setSelectedData<Accountant>(_data);
         }
 
         public void load()

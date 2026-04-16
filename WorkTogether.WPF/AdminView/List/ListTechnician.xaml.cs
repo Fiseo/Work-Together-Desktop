@@ -15,29 +15,29 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using TechnicianData = WorkTogether.Data.Models.Technician;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
     /// Logique d'interaction pour Technician.xaml
     /// </summary>
-    public partial class Technician : UserControl, IList<TechnicianData>
+    public partial class ListTechnician : UserControl, IList<Technician>
     {
         private PageList _page;
-        private EntityRepository<TechnicianData> _repository;
+        private EntityRepository<Technician> _repository;
 
-        PageList IList<TechnicianData>.page => _page;
-        EntityRepository<TechnicianData> IList<TechnicianData>.repository => _repository;
+        PageList IList<Technician>.page => _page;
+        EntityRepository<Technician> IList<Technician>.repository => _repository;
 
 
-        private TechnicianData _data;
-        public TechnicianData Selected_Data => _data;
+        private Technician _data;
+        public Technician Selected_Data => _data;
 
-        public Technician(PageList page)
+        public ListTechnician(PageList page)
         {
             _page = page;
-            _data = new TechnicianData();
+            _data = new Technician();
             _repository = new TechnicianRepository(_page.window.context);
             InitializeComponent();
             load();
@@ -45,10 +45,10 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as TechnicianData;
+            _data = DataGrid.SelectedItem as Technician;
 
             if (_data != null)
-                _page.setSelectedData<TechnicianData>(_data);
+                _page.setSelectedData<Technician>(_data);
         }
 
         public void load()

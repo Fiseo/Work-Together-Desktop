@@ -15,40 +15,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using ServiceCallData = WorkTogether.Data.Models.ServiceCall;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour ServiceCall.xaml
+    /// Logique d'interaction pour Individual.xaml
     /// </summary>
-    public partial class ServiceCall : UserControl, IList<ServiceCallData>
+    public partial class ListIndividual : UserControl, IList<Individual>
     {
         private PageList _page;
-        private EntityRepository<ServiceCallData> _repository;
+        private EntityRepository<Individual> _repository;
 
-        PageList IList<ServiceCallData>.page => _page;
-        EntityRepository<ServiceCallData> IList<ServiceCallData>.repository => _repository;
+        PageList IList<Individual>.page => _page;
+        EntityRepository<Individual> IList<Individual>.repository => _repository;
 
 
-        private ServiceCallData _data;
-        public ServiceCallData Selected_Data => _data;
+        private Individual _data;
+        public Individual Selected_Data => _data;
 
-        public ServiceCall(PageList page)
+        public ListIndividual(PageList page)
         {
             _page = page;
-            _data = new ServiceCallData();
-            _repository = new ServiceCallRepository(_page.window.context);
+            _data = new Individual();
+            _repository = new IndividualRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as ServiceCallData;
+            _data = DataGrid.SelectedItem as Individual;
 
             if (_data != null)
-                _page.setSelectedData<ServiceCallData>(_data);
+                _page.setSelectedData<Individual>(_data);
         }
 
         public void load()

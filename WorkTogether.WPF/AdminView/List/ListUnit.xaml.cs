@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,40 +15,38 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using UserData = WorkTogether.Data.Models.User;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour User.xaml
+    /// Logique d'interaction pour Unit.xaml
     /// </summary>
-    public partial class User : UserControl, IList<UserData>
+    public partial class ListUnit : UserControl, IList<Unit>
     {
         private PageList _page;
-        private EntityRepository<UserData> _repository;
+        private EntityRepository<Unit> _repository;
+        PageList IList<Unit>.page => _page;
+        EntityRepository<Unit> IList<Unit>.repository => _repository;
 
-        PageList IList<UserData>.page => _page;
-        EntityRepository<UserData> IList<UserData>.repository => _repository;
+        private Unit _data;
+        public Unit Selected_Data => _data;
 
-
-        private UserData _data;
-        public UserData Selected_Data => _data;
-
-        public User(PageList page)
+        public ListUnit(PageList page)
         {
             _page = page;
-            _data = new UserData();
-            _repository = new UserRepository(_page.window.context);
+            _data = new Unit();
+            _repository = new UnitRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as UserData;
+            _data = DataGrid.SelectedItem as Unit;
 
             if (_data != null)
-                _page.setSelectedData<UserData>(_data);
+                _page.setSelectedData<Unit>(_data);
         }
 
         public void load()

@@ -15,39 +15,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using AccountantData = WorkTogether.Data.Models.Accountant;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Accountant.xaml
+    /// Logique d'interaction pour ServiceCall.xaml
     /// </summary>
-    public partial class Accountant : UserControl, IList<AccountantData>
+    public partial class ListServiceCall : UserControl, IList<ServiceCall>
     {
         private PageList _page;
-        private EntityRepository<AccountantData> _repository;
-        PageList IList<AccountantData>.page => _page;
-        EntityRepository<AccountantData> IList<AccountantData>.repository => _repository;
+        private EntityRepository<ServiceCall> _repository;
+
+        PageList IList<ServiceCall>.page => _page;
+        EntityRepository<ServiceCall> IList<ServiceCall>.repository => _repository;
 
 
-        private AccountantData _data;
-        public AccountantData Selected_Data => _data;
+        private ServiceCall _data;
+        public ServiceCall Selected_Data => _data;
 
-        public Accountant(PageList page)
+        public ListServiceCall(PageList page)
         {
             _page = page;
-            _data = new AccountantData();
-            _repository = new AccountantRepository(_page.window.context);
+            _data = new ServiceCall();
+            _repository = new ServiceCallRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as AccountantData;
+            _data = DataGrid.SelectedItem as ServiceCall;
 
             if (_data != null)
-                _page.setSelectedData<AccountantData>(_data);
+                _page.setSelectedData<ServiceCall>(_data);
         }
 
         public void load()

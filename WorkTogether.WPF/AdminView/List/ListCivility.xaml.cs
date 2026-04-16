@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,39 +14,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using BayData = WorkTogether.Data.Models.Bay;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Bay.xaml
+    /// Logique d'interaction pour Civility.xaml
     /// </summary>
-    public partial class Bay : UserControl, IList<BayData>
+    public partial class ListCivility : UserControl, IList<Civility>
     {
         private PageList _page;
-        private EntityRepository<BayData> _repository;
-        PageList IList<BayData>.page => _page;
-        EntityRepository<BayData> IList<BayData>.repository => _repository;
+        private EntityRepository<Civility> _repository;
+
+        PageList IList<Civility>.page => _page;
+        EntityRepository<Civility> IList<Civility>.repository => _repository;
 
 
-        private BayData _data;
-        public BayData Selected_Data => _data;
+        private Civility _data;
+        public Civility Selected_Data => _data;
 
-        public Bay(PageList page)
+        public ListCivility(PageList page)
         {
             _page = page;
-            _data = new BayData();
-            _repository = new BayRepository(_page.window.context);
+            _data = new Civility();
+            _repository = new CivilityRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as BayData;
+            _data = DataGrid.SelectedItem as Civility;
 
             if (_data != null)
-                _page.setSelectedData<BayData>(_data);
+                _page.setSelectedData<Civility>(_data);
         }
 
         public void load()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mysqlx.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -15,23 +16,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using CivilityData = WorkTogether.Data.Models.Civility;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
     /// <summary>
-    /// Logique d'interaction pour Civility.xaml
+    /// Logique d'interaction pour ServiceCallType.xaml
     /// </summary>
-    public partial class Civility : UserControl, IForm<CivilityData>
+    public partial class FormServiceCallType : UserControl, IForm<ServiceCallType>
     {
         private PageList _page;
-        private CivilityRepository _repository;
-        PageList IForm<CivilityData>.page => _page;
-        EntityRepository<CivilityData> IForm<CivilityData>.repository => _repository;
+        private EntityRepository<ServiceCallType> _repository;
+        PageList IForm<ServiceCallType>.page => _page;
+        EntityRepository<ServiceCallType> IForm<ServiceCallType>.repository => _repository;
 
-
-        private CivilityData? _SelectedData = null;
-        public CivilityData? SelectedData
+        private ServiceCallType? _SelectedData = null;
+        public ServiceCallType? SelectedData
         {
             get => _SelectedData;
             set
@@ -41,10 +41,10 @@ namespace WorkTogether.WPF.AdminView.Form
             }
         }
 
-        public Civility(PageList page)
+        public FormServiceCallType(PageList page)
         {
             _page = page;
-            _repository = new CivilityRepository(_page.window.context);
+            _repository = new ServiceCallTypeRepository(_page.window.context);
             InitializeComponent();
         }
 
@@ -56,7 +56,7 @@ namespace WorkTogether.WPF.AdminView.Form
             TxtNewLabel.Text = _SelectedData.Label;
             Delete.Visibility = Visibility.Visible;
             Clear.Visibility = Visibility.Visible;
-            TitleForm.Text = "Modifier une civilité";
+            TitleForm.Text = "Modifier un type d'intervention";
         }
 
         public void clear()
@@ -64,29 +64,36 @@ namespace WorkTogether.WPF.AdminView.Form
             TxtNewLabel.Clear();
             Delete.Visibility = Visibility.Collapsed;
             Clear.Visibility = Visibility.Collapsed;
-            TitleForm.Text = "Créer une nouvelle civilité";
-            ((IForm<CivilityData>)this).loadList();
+            TitleForm.Text = "Créer un nouveau type d'intervention";
+            ((IForm<ServiceCallType>)this).loadList();
         }
 
         public void Save_Click(object sender, RoutedEventArgs e)
         {
             string label = TxtNewLabel.Text.Trim();
 
+            if (string.IsNullOrEmpty(label))
+                return;
+
             if (_SelectedData == null)
             {
-                _SelectedData = new CivilityData
+                var serviceCallType = new ServiceCallType
                 {
                     Label = label
                 };
+                _page.window.context.ServiceCallTypeSet.Add(serviceCallType);
             }
             else
+            {
                 _SelectedData.Label = label;
+                _page.window.context.ServiceCallTypeSet.Update(_SelectedData);
+            }
 
-            _repository.save(_SelectedData);
+            _page.window.context.SaveChanges();
             clear();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<CivilityData>.Static_Delete(this);
+        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<ServiceCallType>.Static_Delete(this);
 
         public void Clear_Click(object sender, RoutedEventArgs e) => clear();
     }

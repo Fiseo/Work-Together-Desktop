@@ -14,40 +14,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using ServiceCallTypeData = WorkTogether.Data.Models.ServiceCallType;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour ServiceCallType.xaml
+    /// Logique d'interaction pour Company.xaml
     /// </summary>
-    public partial class ServiceCallType : UserControl, IList<ServiceCallTypeData>
+    public partial class ListCompany : UserControl, IList<Company>
     {
         private PageList _page;
-        private EntityRepository<ServiceCallTypeData> _repository;
+        private EntityRepository<Company> _repository;
 
-        PageList IList<ServiceCallTypeData>.page => _page;
-        EntityRepository<ServiceCallTypeData> IList<ServiceCallTypeData>.repository => _repository;
+        PageList IList<Company>.page => _page;
+        EntityRepository<Company> IList<Company>.repository => _repository;
 
 
-        private ServiceCallTypeData _data;
-        public ServiceCallTypeData Selected_Data => _data;
+        private Company _data;
+        public Company Selected_Data => _data;
 
-        public ServiceCallType(PageList page)
+        public ListCompany(PageList page)
         {
             _page = page;
-            _data = new ServiceCallTypeData();
-            _repository = new ServiceCallTypeRepository(_page.window.context);
+            _data = new Company();
+            _repository = new CompanyRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as ServiceCallTypeData;
+            _data = DataGrid.SelectedItem as Company;
 
             if (_data != null)
-                _page.setSelectedData<ServiceCallTypeData>(_data);
+                _page.setSelectedData<Company>(_data);
         }
 
         public void load()

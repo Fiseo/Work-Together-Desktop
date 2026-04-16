@@ -14,45 +14,45 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using CompanyData = WorkTogether.Data.Models.Company;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Company.xaml
+    /// Logique d'interaction pour Offer.xaml
     /// </summary>
-    public partial class Company : UserControl, IList<CompanyData>
+    public partial class ListOffer : UserControl, IList<Offer>
     {
         private PageList _page;
-        private EntityRepository<CompanyData> _repository;
+        private OfferRepository _repository;
 
-        PageList IList<CompanyData>.page => _page;
-        EntityRepository<CompanyData> IList<CompanyData>.repository => _repository;
+        PageList IList<Offer>.page => _page;
+        EntityRepository<Offer> IList<Offer>.repository => _repository;
 
 
-        private CompanyData _data;
-        public CompanyData Selected_Data => _data;
+        private Offer _data;
+        public Offer Selected_Data => _data;
 
-        public Company(PageList page)
+        public ListOffer(PageList page)
         {
             _page = page;
-            _data = new CompanyData();
-            _repository = new CompanyRepository(_page.window.context);
+            _data = new Offer();
+            _repository = new OfferRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as CompanyData;
+            _data = DataGrid.SelectedItem as Offer;
 
             if (_data != null)
-                _page.setSelectedData<CompanyData>(_data);
+                _page.setSelectedData<Offer>(_data);
         }
 
         public void load()
         {
-            DataGrid.ItemsSource = _repository.findAll();
+            DataGrid.ItemsSource = _repository.findAllActive();
         }
     }
 }

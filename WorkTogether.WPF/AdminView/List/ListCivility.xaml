@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WorkTogether.WPF.AdminView.List.Accountant"
+﻿<UserControl x:Class="WorkTogether.WPF.AdminView.List.ListCivility"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,11 +13,9 @@
   GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#E5E7EB" HeadersVisibility="Column" Margin="0,0,20,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto"/>
-                <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="auto" FontWeight="SemiBold"/>
-                <DataGridTextColumn Header="Nom" Binding="{Binding LastName}" Width="auto"/>
-                <DataGridTextColumn Header="Prénom" Binding="{Binding FirstName}" Width="auto"/>
-                <DataGridTextColumn Header="Civilité" Binding="{Binding Civility.Label}" Width="auto"/>
+                <DataGridTextColumn Header="Label" Binding="{Binding Label}" Width="auto" FontWeight="SemiBold"/>
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </UserControl>

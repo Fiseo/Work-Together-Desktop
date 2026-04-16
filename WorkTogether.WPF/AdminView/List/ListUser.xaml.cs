@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,40 +14,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using IndividualData = WorkTogether.Data.Models.Individual;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Individual.xaml
+    /// Logique d'interaction pour User.xaml
     /// </summary>
-    public partial class Individual : UserControl, IList<IndividualData>
+    public partial class ListUser : UserControl, IList<User>
     {
         private PageList _page;
-        private EntityRepository<IndividualData> _repository;
+        private EntityRepository<User> _repository;
 
-        PageList IList<IndividualData>.page => _page;
-        EntityRepository<IndividualData> IList<IndividualData>.repository => _repository;
+        PageList IList<User>.page => _page;
+        EntityRepository<User> IList<User>.repository => _repository;
 
 
-        private IndividualData _data;
-        public IndividualData Selected_Data => _data;
+        private User _data;
+        public User Selected_Data => _data;
 
-        public Individual(PageList page)
+        public ListUser(PageList page)
         {
             _page = page;
-            _data = new IndividualData();
-            _repository = new IndividualRepository(_page.window.context);
+            _data = new User();
+            _repository = new UserRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as IndividualData;
+            _data = DataGrid.SelectedItem as User;
 
             if (_data != null)
-                _page.setSelectedData<IndividualData>(_data);
+                _page.setSelectedData<User>(_data);
         }
 
         public void load()

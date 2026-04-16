@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,38 +14,40 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
-using UnitData = WorkTogether.Data.Models.Unit;
+using WorkTogether.Data.Models;
 
 namespace WorkTogether.WPF.AdminView.List
 {
     /// <summary>
-    /// Logique d'interaction pour Unit.xaml
+    /// Logique d'interaction pour ServiceCallType.xaml
     /// </summary>
-    public partial class Unit : UserControl, IList<UnitData>
+    public partial class ListServiceCallType : UserControl, IList<ServiceCallType>
     {
         private PageList _page;
-        private EntityRepository<UnitData> _repository;
-        PageList IList<UnitData>.page => _page;
-        EntityRepository<UnitData> IList<UnitData>.repository => _repository;
+        private EntityRepository<ServiceCallType> _repository;
 
-        private UnitData _data;
-        public UnitData Selected_Data => _data;
+        PageList IList<ServiceCallType>.page => _page;
+        EntityRepository<ServiceCallType> IList<ServiceCallType>.repository => _repository;
 
-        public Unit(PageList page)
+
+        private ServiceCallType _data;
+        public ServiceCallType Selected_Data => _data;
+
+        public ListServiceCallType(PageList page)
         {
             _page = page;
-            _data = new UnitData();
-            _repository = new UnitRepository(_page.window.context);
+            _data = new ServiceCallType();
+            _repository = new ServiceCallTypeRepository(_page.window.context);
             InitializeComponent();
             load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
-            _data = DataGrid.SelectedItem as UnitData;
+            _data = DataGrid.SelectedItem as ServiceCallType;
 
             if (_data != null)
-                _page.setSelectedData<UnitData>(_data);
+                _page.setSelectedData<ServiceCallType>(_data);
         }
 
         public void load()
