@@ -8,7 +8,7 @@ using WorkTogether.Data.Models;
 
 namespace WorkTogether.Data.Repository
 {
-    public class OfferRepository: EntityRepository<Offer>
+    public class OfferRepository : EntityRepository<Offer>
     {
         public OfferRepository() : base(new WorkTogetherContext()) { }
         public OfferRepository(WorkTogetherContext context) : base(context) { }
@@ -22,6 +22,14 @@ namespace WorkTogether.Data.Repository
         {
             return DbSet
                 .Include(o => o.Bookings)
+                .ToList();
+        }
+
+        public List<Offer> findAllActive()
+        {
+            return DbSet
+                .Include(o => o.Bookings)
+                .Where(o => o.IsActive == true)
                 .ToList();
         }
     }

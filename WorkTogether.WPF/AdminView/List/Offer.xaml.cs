@@ -24,7 +24,7 @@ namespace WorkTogether.WPF.AdminView.List
     public partial class Offer : UserControl, IList<OfferData>
     {
         private PageList _page;
-        private EntityRepository<OfferData> _repository;
+        private OfferRepository _repository;
 
         PageList IList<OfferData>.page => _page;
         EntityRepository<OfferData> IList<OfferData>.repository => _repository;
@@ -52,7 +52,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _repository.findAll();
+            DataGrid.ItemsSource = _repository.findAllActive();
         }
     }
 }
