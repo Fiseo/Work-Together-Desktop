@@ -9,7 +9,7 @@ public partial class Unit : DbEntity
 
     public string Label { get; set; } = null!;
 
-    public sbyte HaveProblem { get; set; }
+    public bool HaveProblem { get; set; }
 
     public int BayId { get; set; }
 

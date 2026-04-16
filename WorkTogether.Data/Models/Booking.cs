@@ -8,7 +8,7 @@ public partial class Booking: DbEntity
 {
     public int Id { get; set; }
 
-    public sbyte IsMonthly { get; set; }
+    public bool IsMonthly { get; set; }
 
     public DateTime Start { get; set; }
 
@@ -17,9 +17,9 @@ public partial class Booking: DbEntity
     public int OfferId { get; set; }
     public virtual Offer Offer { get; set; } = null!;
 
-    public sbyte IsPayed { get; set; }
+    public bool IsPayed { get; set; }
 
-    public sbyte IsRenewable { get; set; }
+    public bool IsRenewable { get; set; }
 
     public int? IndividualId { get; set; }
     public virtual Individual? Individual { get; set; }

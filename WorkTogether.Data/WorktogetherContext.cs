@@ -323,4 +323,8 @@ public partial class WorkTogetherContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+    {
+        builder.Properties<sbyte>().HaveConversion<bool>();
+    }
 }
