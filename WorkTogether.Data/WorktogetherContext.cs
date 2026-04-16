@@ -58,6 +58,9 @@ public partial class WorkTogetherContext : DbContext
             entity.Property(e => e.Label)
                 .HasMaxLength(255)
                 .HasColumnName("label");
+            entity.Property(e => e.UnitPrefix)
+                .HasMaxLength(3)
+                .HasColumnName("unit_prefix");
         });
 
         modelBuilder.Entity<Booking>(entity =>

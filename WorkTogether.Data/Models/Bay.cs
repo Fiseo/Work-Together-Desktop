@@ -12,5 +12,9 @@ public partial class Bay: DbEntity
     [StringLength(255, MinimumLength = 2)]
     public string Label { get; set; } = null!;
 
+    [Required]
+    [StringLength(3, MinimumLength = 1)]
+    public string UnitPrefix { get; set; } = null!;
+
     public ICollection<Unit> Units { get; set; } = new List<Unit>();
 }
