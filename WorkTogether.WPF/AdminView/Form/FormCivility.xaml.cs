@@ -73,14 +73,9 @@ namespace WorkTogether.WPF.AdminView.Form
             string label = TxtNewLabel.Text.Trim();
 
             if (_SelectedData == null)
-            {
-                _SelectedData = new Civility
-                {
-                    Label = label
-                };
-            }
-            else
-                _SelectedData.Label = label;
+                _SelectedData = new Civility();
+
+            _SelectedData.Label = label;
 
             _repository.save(_SelectedData);
             clear();

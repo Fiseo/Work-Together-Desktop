@@ -27,7 +27,7 @@ namespace WorkTogether.WPF.AdminView.Form
     public partial class FormOffer : UserControl, IForm<Offer>
     {
         private PageList _page;
-        private EntityRepository<Offer> _repository;
+        private OfferRepository _repository;
         PageList IForm<Offer>.page => _page;
         EntityRepository<Offer> IForm<Offer>.repository => _repository;
 
@@ -95,8 +95,6 @@ namespace WorkTogether.WPF.AdminView.Form
 
             _repository.save(_SelectedData);
             clear();
-            TitleForm.Text = "Créer une nouvelle offre";
-            ((IForm<Offer>)this).loadList();
         }
 
         public void Delete_Click(object sender, RoutedEventArgs e) => IForm<Offer>.Static_Delete(this);

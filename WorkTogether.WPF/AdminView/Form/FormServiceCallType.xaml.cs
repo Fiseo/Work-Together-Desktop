@@ -26,7 +26,7 @@ namespace WorkTogether.WPF.AdminView.Form
     public partial class FormServiceCallType : UserControl, IForm<ServiceCallType>
     {
         private PageList _page;
-        private EntityRepository<ServiceCallType> _repository;
+        private ServiceCallTypeRepository _repository;
         PageList IForm<ServiceCallType>.page => _page;
         EntityRepository<ServiceCallType> IForm<ServiceCallType>.repository => _repository;
 
@@ -76,20 +76,11 @@ namespace WorkTogether.WPF.AdminView.Form
                 return;
 
             if (_SelectedData == null)
-            {
-                var serviceCallType = new ServiceCallType
-                {
-                    Label = label
-                };
-                _page.window.context.ServiceCallTypeSet.Add(serviceCallType);
-            }
-            else
-            {
-                _SelectedData.Label = label;
-                _page.window.context.ServiceCallTypeSet.Update(_SelectedData);
-            }
+                _SelectedData = new ServiceCallType();
 
-            _page.window.context.SaveChanges();
+            _SelectedData.Label = label;
+
+            _repository.save(_SelectedData);
             clear();
         }
 
