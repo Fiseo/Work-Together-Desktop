@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -53,15 +54,23 @@ namespace WorkTogether.WPF.AdminView.Form
             if (_SelectedData == null)
                 return;
             TxtNewLabel.Text = _SelectedData.Label;
+            Delete.Visibility = Visibility.Visible;
+            Clear.Visibility = Visibility.Visible;
             TitleForm.Text = "Modifier une civilité";
+        }
+
+        public void clear()
+        {
+            TxtNewLabel.Clear();
+            Delete.Visibility = Visibility.Collapsed;
+            Clear.Visibility = Visibility.Collapsed;
+            TitleForm.Text = "Créer une nouvelle civilité";
+            ((IForm<CivilityData>)this).loadList();
         }
 
         public void Save_Click(object sender, RoutedEventArgs e)
         {
             string label = TxtNewLabel.Text.Trim();
-
-            if (string.IsNullOrEmpty(label))
-                return;
 
             if (_SelectedData == null)
             {
@@ -74,9 +83,20 @@ namespace WorkTogether.WPF.AdminView.Form
                 _SelectedData.Label = label;
 
             _repository.save(_SelectedData);
-            TxtNewLabel.Clear();
-            TitleForm.Text = "Créer une nouvelle civilité";
-            ((IForm<CivilityData>)this).loadList();
+            clear();
+        }
+
+        public void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (_SelectedData == null)
+                return;
+            _repository.delete(_SelectedData);
+            clear();
+        }
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
         }
     }
 }

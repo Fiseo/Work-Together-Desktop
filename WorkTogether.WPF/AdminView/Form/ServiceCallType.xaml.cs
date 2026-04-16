@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Mysqlx.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data;
+using WorkTogether.Data.Repository;
 using ServiceCallTypeData = WorkTogether.Data.Models.ServiceCallType;
 
 namespace WorkTogether.WPF.AdminView.Form
@@ -41,6 +44,7 @@ namespace WorkTogether.WPF.AdminView.Form
         public ServiceCallType(PageList page)
         {
             _page = page;
+            _repository = new ServiceCallTypeRepository(_page.window.context);
             InitializeComponent();
         }
 
@@ -50,7 +54,18 @@ namespace WorkTogether.WPF.AdminView.Form
             if (_SelectedData == null)
                 return;
             TxtNewLabel.Text = _SelectedData.Label;
+            Delete.Visibility = Visibility.Visible;
+            Clear.Visibility = Visibility.Visible;
             TitleForm.Text = "Modifier un type d'intervention";
+        }
+
+        public void clear()
+        {
+            TxtNewLabel.Clear();
+            Delete.Visibility = Visibility.Collapsed;
+            Clear.Visibility = Visibility.Collapsed;
+            TitleForm.Text = "Créer un nouveau type d'intervention";
+            ((IForm<ServiceCallTypeData>)this).loadList();
         }
 
         public void Save_Click(object sender, RoutedEventArgs e)
@@ -75,9 +90,20 @@ namespace WorkTogether.WPF.AdminView.Form
             }
 
             _page.window.context.SaveChanges();
-            TxtNewLabel.Clear();
-            TitleForm.Text = "Créer un nouveau type d'intervention";
-            ((IForm<ServiceCallTypeData>)this).loadList();
+            clear();
+        }
+
+        public void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (_SelectedData == null)
+                return;
+            _repository.delete(_SelectedData);
+            clear();
+        }
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            clear();
         }
     }
 }
