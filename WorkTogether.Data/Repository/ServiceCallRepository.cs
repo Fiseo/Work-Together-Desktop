@@ -22,6 +22,7 @@ namespace WorkTogether.Data.Repository
         {
             return DbSet
                 .Include(sc => sc.Unit)
+                .ThenInclude(u => u.Bay)
                 .Include(sc => sc.Technician)
                 .Include(sc => sc.Type)
                 .ToList();
