@@ -12,8 +12,15 @@ namespace WorkTogether.WPF
         void reload();
         void clear();
         void Save_Click(object sender, RoutedEventArgs e);
-        void Delete_Click(object sender, RoutedEventArgs e);
-        void Clear_Click(object sender, RoutedEventArgs e);
+        static void Static_Delete(IForm<E> Form)
+        {
+            if (Form.SelectedData == null)
+                return;
+            Form.repository.delete(Form.SelectedData);
+            Form.clear();
+        }
+        void Delete_Click(object sender, RoutedEventArgs e) => Static_Delete(this);
+        void Clear_Click(object sender, RoutedEventArgs e) => clear();
         void loadList()
         {
             IList<E>? list = page.GetList<E>();

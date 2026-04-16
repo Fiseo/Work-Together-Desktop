@@ -86,17 +86,8 @@ namespace WorkTogether.WPF.AdminView.Form
             clear();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            if (_SelectedData == null)
-                return;
-            _repository.delete(_SelectedData);
-            clear();
-        }
+        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<CivilityData>.Static_Delete(this);
 
-        public void Clear_Click(object sender, RoutedEventArgs e)
-        {
-            clear();
-        }
+        public void Clear_Click(object sender, RoutedEventArgs e) => clear();
     }
 }
