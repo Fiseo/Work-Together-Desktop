@@ -155,6 +155,7 @@ public partial class WorkTogetherContext : DbContext
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Description).HasColumnName("description");
             entity.Property(e => e.Discount).HasColumnName("discount");
+            entity.Property(e => e.IsActive).HasColumnName("is_active");
             entity.Property(e => e.Label)
                 .HasMaxLength(255)
                 .HasColumnName("label");

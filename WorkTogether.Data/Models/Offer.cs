@@ -22,5 +22,7 @@ public partial class Offer : DbEntity
     [Required]
     public string Description { get; set; } = null!;
 
+    public sbyte IsActive { get; set; }
+
     public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 }
