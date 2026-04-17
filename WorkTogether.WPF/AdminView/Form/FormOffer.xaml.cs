@@ -64,7 +64,7 @@ namespace WorkTogether.WPF.AdminView.Form
         {
             TxtNewLabel.Clear();
             TxtNewUnits.Clear();
-            TxtNewReduction.Clear();
+            TxtNewReduction.Text = "100";
             TxtNewDescription.Clear();
             _SelectedData = null;
             Delete.Visibility = Visibility.Collapsed;
