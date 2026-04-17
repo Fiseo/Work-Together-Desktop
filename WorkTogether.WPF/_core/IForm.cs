@@ -16,7 +16,7 @@ namespace WorkTogether.WPF
         {
             if (Form.SelectedData == null)
                 return;
-            Form.repository.delete(Form.SelectedData);
+            Form.repository.Delete(Form.SelectedData);
             Form.clear();
         }
         void Delete_Click(object sender, RoutedEventArgs e) => Static_Delete(this);

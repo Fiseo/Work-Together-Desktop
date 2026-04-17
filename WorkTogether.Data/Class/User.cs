@@ -20,7 +20,7 @@ public class User : DbEntity
 
     public virtual string Label => "none";
 
-    public override bool isDeletable()
+    public override bool IsDeleteable()
     {
         return false;
     }

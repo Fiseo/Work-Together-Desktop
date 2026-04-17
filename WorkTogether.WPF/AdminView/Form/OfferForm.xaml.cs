@@ -84,7 +84,7 @@ namespace WorkTogether.WPF.AdminView.Form
             if (_SelectedData != null)
             {
                 _SelectedData.IsActive = false;
-                _repository.save(_SelectedData);
+                _repository.Save(_SelectedData);
             }
             _SelectedData = new Offer();
 
@@ -94,7 +94,7 @@ namespace WorkTogether.WPF.AdminView.Form
             _SelectedData.Description = Description;
             _SelectedData.IsActive = true;
 
-            _repository.save(_SelectedData);
+            _repository.Save(_SelectedData);
             clear();
         }
 

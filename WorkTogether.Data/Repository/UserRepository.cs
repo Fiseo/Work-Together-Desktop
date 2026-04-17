@@ -13,7 +13,7 @@ namespace WorkTogether.Data.Repository
         public UserRepository() : base(new WorkTogetherContext()) { }
         public UserRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.UserSet;
         }

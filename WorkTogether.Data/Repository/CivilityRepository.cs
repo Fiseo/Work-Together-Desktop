@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public CivilityRepository():base(new WorkTogetherContext()) { }
         public CivilityRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.CivilitySet;
         }
 
-        public override List<Civility> findAll()
+        public override List<Civility> FindAll()
         {
             return DbSet
                 .Include(c => c.Individuals)

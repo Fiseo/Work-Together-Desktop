@@ -13,19 +13,19 @@ namespace WorkTogether.Data.Repository
         public OfferRepository() : base(new WorkTogetherContext()) { }
         public OfferRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.OfferSet;
         }
 
-        public override List<Offer> findAll()
+        public override List<Offer> FindAll()
         {
             return DbSet
                 .Include(o => o.Bookings)
                 .ToList();
         }
 
-        public List<Offer> findAllActive()
+        public List<Offer> FindAllActive()
         {
             return DbSet
                 .Include(o => o.Bookings)

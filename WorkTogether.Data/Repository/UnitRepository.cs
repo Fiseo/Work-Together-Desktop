@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public UnitRepository() : base(new WorkTogetherContext()) { }
         public UnitRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.UnitSet;
         }
 
-        public override List<Unit> findAll()
+        public override List<Unit> FindAll()
         {
             return DbSet
                 .Include(u => u.Bay)

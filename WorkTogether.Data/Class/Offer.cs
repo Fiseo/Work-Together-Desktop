@@ -5,7 +5,7 @@ namespace WorkTogether.Data.Models;
 
 public partial class Offer : DbEntity
 {
-    public override bool isDeletable()
+    public override bool IsDeleteable()
     {
         if (Bookings.Count == 0)
             return true;

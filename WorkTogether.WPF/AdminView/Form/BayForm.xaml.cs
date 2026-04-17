@@ -91,7 +91,7 @@ namespace WorkTogether.WPF.AdminView.Form
             _SelectedData.Label = label;
             _SelectedData.UnitPrefix = UnitLabel;
 
-            _repository.save(_SelectedData);
+            _repository.Save(_SelectedData);
 
             int x = 0;
             if (_SelectedData.NumberUnit == 0)
@@ -112,7 +112,7 @@ namespace WorkTogether.WPF.AdminView.Form
                 else
                     u = _SelectedData.Units.ElementAt(i - 1);
                 u.Label = UnitLabel + i.ToString().PadLeft(x.ToString().Length, '0');
-                _unitRepository.save(u);
+                _unitRepository.Save(u);
             }
 
             clear();

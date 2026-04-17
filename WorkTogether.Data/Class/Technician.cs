@@ -4,7 +4,7 @@
     {
         public ICollection<ServiceCall> ServiceCalls { get; set; } = new List<ServiceCall>();
 
-        public override bool isDeletable()
+        public override bool IsDeleteable()
         {
             if (ServiceCalls.Count == 0)
                 return true;

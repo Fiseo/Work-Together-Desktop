@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public CompanyRepository() : base(new WorkTogetherContext()) { }
         public CompanyRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.CompanySet;
         }
 
-        public override List<Company> findAll()
+        public override List<Company> FindAll()
         {
             return DbSet
                 .Include(c => c.Bookings)

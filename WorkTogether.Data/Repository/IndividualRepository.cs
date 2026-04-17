@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public IndividualRepository() : base(new WorkTogetherContext()) { }
         public IndividualRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.IndividualSet;
         }
 
-        public override List<Individual> findAll()
+        public override List<Individual> FindAll()
         {
             return DbSet
                 .Include(i => i.Civility)

@@ -6,7 +6,7 @@
 
         public int? Rating { get; set; }
 
-        public override bool isDeletable()
+        public override bool IsDeleteable()
         {
             return false;
         }

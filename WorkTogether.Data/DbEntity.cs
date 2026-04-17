@@ -9,7 +9,7 @@ namespace WorkTogether.Data
 {
     public abstract class DbEntity
     {
-        public bool isValid()
+        public bool IsValid()
         {
             return Validator.TryValidateObject(
                 this,
@@ -19,6 +19,6 @@ namespace WorkTogether.Data
             );
         }
 
-        public abstract bool isDeletable();
+        public abstract bool IsDeleteable();
     }
 }

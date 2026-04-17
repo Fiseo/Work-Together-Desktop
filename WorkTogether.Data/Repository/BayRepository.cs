@@ -17,14 +17,14 @@ namespace WorkTogether.Data.Repository
             _unitRepository = new UnitRepository(context);
         }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.BaySet;
         }
 
-        public override void delete(Bay entity)
+        public override void Delete(Bay entity)
         {
-            if (entity.isDeletable() || entity.isEveryUnitIsDeletable())
+            if (entity.IsDeleteable() || entity.IsEveryUnitIsDeletable())
             {
                 DbSet.Remove(entity);
                 Context.SaveChanges();
@@ -33,7 +33,7 @@ namespace WorkTogether.Data.Repository
             throw new Exception("This entity isn't deletable at the moment !");
         }
 
-        public override List<Bay> findAll()
+        public override List<Bay> FindAll()
         {
             return DbSet
                 .Include(b => b.Units)

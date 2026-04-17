@@ -53,7 +53,7 @@ namespace WorkTogether.WPF.AdminView.List
 
         public void load()
         {
-            DataGrid.ItemsSource = _repository.findAll();
+            DataGrid.ItemsSource = _repository.FindAll();
         }
     }
 }

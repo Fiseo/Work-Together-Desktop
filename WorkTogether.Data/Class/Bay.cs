@@ -7,18 +7,18 @@ public partial class Bay: DbEntity
 {
     public int NumberUnit { get => Units.Count; }
 
-    public override bool isDeletable()
+    public override bool IsDeleteable()
     {
         if (NumberUnit == 0) 
             return true;
         return false;
     }
 
-    public bool isEveryUnitIsDeletable()
+    public bool IsEveryUnitIsDeletable()
     {
         foreach(Unit unit in Units)
         {
-            if (!unit.isDeletable())
+            if (!unit.IsDeleteable())
                 return false;
         }
         return true;

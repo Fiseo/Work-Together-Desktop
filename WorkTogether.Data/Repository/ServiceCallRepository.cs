@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public ServiceCallRepository() : base(new WorkTogetherContext()) { }
         public ServiceCallRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.ServiceCallSet;
         }
 
-        public override List<ServiceCall> findAll()
+        public override List<ServiceCall> FindAll()
         {
             return DbSet
                 .Include(sc => sc.Unit)

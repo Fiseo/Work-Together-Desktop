@@ -18,11 +18,11 @@ public partial class Unit : DbEntity
         }
     }
 
-    public override bool isDeletable()
+    public override bool IsDeleteable()
     {
         //TODO : Optimiser cette vérification
         foreach (BookingUnit var in BookingUnits)
-            if (var.isCurrent)
+            if (var.IsCurrent)
                 return false;
         return true;
     }

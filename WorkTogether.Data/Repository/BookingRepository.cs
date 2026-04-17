@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public BookingRepository() : base(new WorkTogetherContext()) { }
         public BookingRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.BookingSet;
         }
 
-        public override List<Booking> findAll()
+        public override List<Booking> FindAll()
         {
             return DbSet
                 .Include(b => b.Individual)

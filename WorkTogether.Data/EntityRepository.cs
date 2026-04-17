@@ -16,20 +16,20 @@ namespace WorkTogether.Data
         public EntityRepository(WorkTogetherContext context)
         {
             Context = context;
-            setDbSet();
+            SetDbSet();
         }
 
         public EntityRepository()
         {
             Context = new WorkTogetherContext();
-            setDbSet();
+            SetDbSet();
         }
 
-        protected abstract void setDbSet();
+        protected abstract void SetDbSet();
 
-        public virtual void save(E entity)
+        public virtual void Save(E entity)
         {
-            if (entity.isValid())
+            if (entity.IsValid())
             {
                 DbSet.Update(entity);
                 Context.SaveChanges();
@@ -38,9 +38,9 @@ namespace WorkTogether.Data
             throw new Exception("This entity is invalid !");
         }
 
-        public virtual void delete(E entity)
+        public virtual void Delete(E entity)
         {
-            if(entity.isDeletable())
+            if(entity.IsDeleteable())
             {
                 DbSet.Remove(entity);
                 Context.SaveChanges();
@@ -49,7 +49,7 @@ namespace WorkTogether.Data
             throw new Exception("This entity isn't deletable at the moment !");
         }
 
-        public virtual List<E> findAll()
+        public virtual List<E> FindAll()
         {
             return DbSet.ToList();
         }

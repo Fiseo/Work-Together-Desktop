@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public TechnicianRepository() : base(new WorkTogetherContext()) { }
         public TechnicianRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.TechnicianSet;
         }
 
-        public override List<Technician> findAll()
+        public override List<Technician> FindAll()
         {
             return DbSet
                 .Include(t => t.ServiceCalls)

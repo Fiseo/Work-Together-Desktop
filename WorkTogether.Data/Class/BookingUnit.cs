@@ -5,12 +5,12 @@ namespace WorkTogether.Data.Models;
 
 public partial class BookingUnit : DbEntity
 {
-    public override bool isDeletable()
+    public override bool IsDeleteable()
     {
         return true;
     }
 
-    public bool isCurrent   
+    public bool IsCurrent   
     {
         get
         {

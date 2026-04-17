@@ -27,7 +27,7 @@ public partial class Booking: DbEntity
             return "aucune";
         } }
 
-    public override bool isDeletable()
+    public override bool IsDeleteable()
     {
         if (!System.Convert.ToBoolean(this.IsPayed))
             return true;

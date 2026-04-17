@@ -78,7 +78,7 @@ namespace WorkTogether.WPF.AdminView.Form
 
             _SelectedData.Label = label;
 
-            _repository.save(_SelectedData);
+            _repository.Save(_SelectedData);
             clear();
         }
 

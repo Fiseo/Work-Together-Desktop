@@ -13,12 +13,12 @@ namespace WorkTogether.Data.Repository
         public AccountantRepository() : base(new WorkTogetherContext()) { }
         public AccountantRepository(WorkTogetherContext context) : base(context) { }
 
-        protected override void setDbSet()
+        protected override void SetDbSet()
         {
             DbSet = Context.AccountantSet;
         }
 
-        public override List<Accountant> findAll()
+        public override List<Accountant> FindAll()
         {
             return DbSet
                 .Include(a => a.Civility)
