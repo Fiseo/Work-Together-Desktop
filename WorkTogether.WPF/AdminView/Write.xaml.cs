@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF.AdminView.Form;
+using WorkTogether.WPF.AdminView.List;
 
 namespace WorkTogether.WPF.AdminView
 {
@@ -39,26 +41,26 @@ namespace WorkTogether.WPF.AdminView
                     break;
                 case "bay":
                     PageList page = new PageList("Modification des Baies", _window);
-                    page.setList<Bay>(new List.ListBay(page));
-                    page.setForm<Bay>(new Form.FormBay(page));
+                    page.setList<Bay>(new ListBay(page));
+                    page.setForm<Bay>(new FormBay(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "civility":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<Civility>(new List.ListCivility(page));
-                    page.setForm<Civility>(new Form.FormCivility(page));
+                    page.setList<Civility>(new ListCivility(page));
+                    page.setForm<Civility>(new FormCivility(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     page = new PageList("Modification des Offres", _window);
-                    page.setList<Offer>(new List.ListOffer(page));
-                    page.setForm<Offer>(new Form.FormOffer(page));
+                    page.setList<Offer>(new ListOffer(page));
+                    page.setForm<Offer>(new FormOffer(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<ServiceCallType>(new List.ListServiceCallType(page));
-                    page.setForm<ServiceCallType>(new Form.FormServiceCallType(page));
+                    page.setList<ServiceCallType>(new ListServiceCallType(page));
+                    page.setForm<ServiceCallType>(new FormServiceCallType(page));
                     _window.mainFrame.Content = page;
                     break;
             }
