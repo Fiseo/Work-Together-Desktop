@@ -62,6 +62,7 @@ namespace WorkTogether.WPF.AdminView.Form
         public void clear()
         {
             TxtNewLabel.Clear();
+            _SelectedData = null;
             Delete.Visibility = Visibility.Collapsed;
             Clear.Visibility = Visibility.Collapsed;
             TitleForm.Text = "Créer un nouveau type d'intervention";
