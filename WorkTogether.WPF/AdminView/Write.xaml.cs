@@ -41,26 +41,26 @@ namespace WorkTogether.WPF.AdminView
                     break;
                 case "bay":
                     PageList page = new PageList("Modification des Baies", _window);
-                    page.setList<Bay>(new ListBay(page));
-                    page.setForm<Bay>(new FormBay(page));
+                    page.setList<Bay>(new BayList(page));
+                    page.setForm<Bay>(new BayForm(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "civility":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<Civility>(new ListCivility(page));
-                    page.setForm<Civility>(new FormCivility(page));
+                    page.setList<Civility>(new CivilityList(page));
+                    page.setForm<Civility>(new CivilityForm(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     page = new PageList("Modification des Offres", _window);
-                    page.setList<Offer>(new ListOffer(page));
-                    page.setForm<Offer>(new FormOffer(page));
+                    page.setList<Offer>(new OfferList(page));
+                    page.setForm<Offer>(new OfferForm(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<ServiceCallType>(new ListServiceCallType(page));
-                    page.setForm<ServiceCallType>(new FormServiceCallType(page));
+                    page.setList<ServiceCallType>(new ServiceCallTypeList(page));
+                    page.setForm<ServiceCallType>(new ServiceCallTypeForm(page));
                     _window.mainFrame.Content = page;
                     break;
             }
