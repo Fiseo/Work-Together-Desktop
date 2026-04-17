@@ -33,6 +33,7 @@ namespace WorkTogether.WPF.AdminView
         private void click(object sender, RoutedEventArgs e)
         {
             string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
+            PageList? page = null;
 
             switch (tag)
             {
@@ -40,7 +41,7 @@ namespace WorkTogether.WPF.AdminView
                     //_window.mainFrame.Content = new User(_window);
                     break;
                 case "bay":
-                    PageList page = new PageList("Modification des Baies", _window);
+                    page = new PageList("Modification des Baies", _window);
                     page.setList<Bay>(new BayList(page));
                     page.setForm<Bay>(new BayForm(page));
                     _window.mainFrame.Content = page;
