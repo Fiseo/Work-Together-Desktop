@@ -38,10 +38,13 @@ namespace WorkTogether.WPF.AdminView
                     //_window.mainFrame.Content = new User(_window);
                     break;
                 case "bay":
-                    //_window.mainFrame.Content = new Bay(_window);
+                    PageList page = new PageList("Modification des Baies", _window);
+                    page.setList<Bay>(new List.ListBay(page));
+                    page.setForm<Bay>(new Form.FormBay(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "civility":
-                    PageList page = new PageList("Modification des Civilités", _window);
+                    page = new PageList("Modification des Civilités", _window);
                     page.setList<Civility>(new List.ListCivility(page));
                     page.setForm<Civility>(new Form.FormCivility(page));
                     _window.mainFrame.Content = page;
