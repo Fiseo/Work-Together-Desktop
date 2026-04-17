@@ -61,6 +61,9 @@ public partial class WorkTogetherContext : DbContext
             entity.Property(e => e.UnitPrefix)
                 .HasMaxLength(3)
                 .HasColumnName("unit_prefix");
+            entity.HasMany(b => b.Units)
+                .WithOne(u => u.Bay)
+                .OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Booking>(entity =>
@@ -230,7 +233,7 @@ public partial class WorkTogetherContext : DbContext
 
             entity.HasOne(d => d.Bay).WithMany(p => p.Units)
                 .HasForeignKey(d => d.BayId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_DCBB0C53DF9BA23B");
         });
 

@@ -24,10 +24,8 @@ namespace WorkTogether.Data.Repository
 
         public override void delete(Bay entity)
         {
-            if (entity.isDeletable())
+            if (entity.isDeletable() || entity.isEveryUnitIsDeletable())
             {
-                foreach (Unit u in entity.Units)
-                    _unitRepository.delete(u);
                 DbSet.Remove(entity);
                 Context.SaveChanges();
                 return;

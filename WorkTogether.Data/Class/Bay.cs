@@ -13,4 +13,14 @@ public partial class Bay: DbEntity
             return true;
         return false;
     }
+
+    public bool isEveryUnitIsDeletable()
+    {
+        foreach(Unit unit in Units)
+        {
+            if (!unit.isDeletable())
+                return false;
+        }
+        return true;
+    }
 }
