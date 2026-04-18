@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF._core;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
@@ -26,50 +27,31 @@ namespace WorkTogether.WPF.AdminView.Form
     {
         private PageList _page;
         private CivilityRepository _repository;
-        PageList IForm<Civility>.page => _page;
-        EntityRepository<Civility> IForm<Civility>.repository => _repository;
-
-
         private Civility? _SelectedData = null;
+        private BtnForm _btn;
+        PageList IForm.Page => _page;
+        EntityRepository<Civility> IForm<Civility>.Repository => _repository;
+
         public Civility? SelectedData
         {
             get => _SelectedData;
             set
             {
                 _SelectedData = value;
-                reload();
+                Reload();
             }
         }
 
         public CivilityForm(PageList page)
         {
-            _page = page;
-            _repository = new CivilityRepository(_page.window.context);
             InitializeComponent();
+            _page = page;
+            _repository = new CivilityRepository(_page.Window.Context);
+            _btn = new BtnForm(this);
+            Btn.Content = _btn;
         }
 
-
-        public void reload()
-        {
-            if (_SelectedData == null)
-                return;
-            TxtNewLabel.Text = _SelectedData.Label;
-            Delete.Visibility = Visibility.Visible;
-            Clear.Visibility = Visibility.Visible;
-            TitleForm.Text = "Modifier une civilité";
-        }
-
-        public void clear()
-        {
-            TxtNewLabel.Clear();
-            _SelectedData = null;
-            Delete.Visibility = Visibility.Collapsed;
-            Clear.Visibility = Visibility.Collapsed;
-            TitleForm.Text = "Créer une nouvelle civilité";
-            ((IForm<Civility>)this).loadList();
-        }
-
-        public void Save_Click(object sender, RoutedEventArgs e)
+        public void Save()
         {
             string label = TxtNewLabel.Text.Trim();
 
@@ -79,11 +61,25 @@ namespace WorkTogether.WPF.AdminView.Form
             _SelectedData.Label = label;
 
             _repository.Save(_SelectedData);
-            clear();
+            Clear();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<Civility>.Static_Delete(this);
+        public void Reload()
+        {
+            if (_SelectedData == null)
+                return;
+            TxtNewLabel.Text = _SelectedData.Label;
+            _btn.SetEdit();
+            TitleForm.Text = "Modifier une civilité";
+        }
 
-        public void Clear_Click(object sender, RoutedEventArgs e) => clear();
+        public void Clear()
+        {
+            TxtNewLabel.Clear();
+            _SelectedData = null;
+            _btn.SetNew();
+            TitleForm.Text = "Créer une nouvelle civilité";
+            ((IForm<Civility>)this).LoadList();
+        }
     }
 }

@@ -16,32 +16,7 @@
                     <TextBlock Text="Libellé du type d'intervention :" Foreground="#6B7280" Margin="0,0,0,5"/>
                     <TextBox x:Name="TxtNewLabel" Height="28" Padding="3" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
 
-                    <Button x:Name="Create" Content="Sauvegarder" Height="35" Background="#10B981" Foreground="White" 
-                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Click="Save_Click">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-
-                    <Button x:Name="Delete" Content="Supprimer la civilité" Height="35" Background="Red" Foreground="White" 
-                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Click="Delete_Click" Visibility="Collapsed" Margin="0,0,0,10">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-
-                    <Button x:Name="Clear" Content="Désélectionner" Height="35" Background="Blue" Foreground="White" 
-                    FontWeight="Bold" BorderThickness="0" Cursor="Hand" Click="Clear_Click" Visibility="Collapsed" Margin="0,0,0,10">
-                        <Button.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                    <Frame x:Name="Btn" NavigationUIVisibility="Hidden"/>
                 </StackPanel>
             </Border>
         </StackPanel>

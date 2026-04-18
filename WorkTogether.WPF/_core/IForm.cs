@@ -3,29 +3,36 @@ using WorkTogether.Data;
 
 namespace WorkTogether.WPF
 {
-    public interface IForm<E>
+    public interface IForm
+    {
+        PageList Page { get; }
+        void Reload();
+        void Clear();
+        void LoadList();
+        void Save();
+        void Delete();
+
+    }
+
+    public interface IForm<E>: IForm
         where E : DbEntity
     {
-        PageList page { get; }
-        EntityRepository<E> repository { get; }
+        EntityRepository<E> Repository { get; }
         E? SelectedData { get; set; }
-        void reload();
-        void clear();
-        void Save_Click(object sender, RoutedEventArgs e);
-        static void Static_Delete(IForm<E> Form)
+
+        void IForm.LoadList()
         {
-            if (Form.SelectedData == null)
-                return;
-            Form.repository.Delete(Form.SelectedData);
-            Form.clear();
+            IList<E>? list = Page.GetList<E>();
+            if (list != null)
+                list.Load();
         }
-        void Delete_Click(object sender, RoutedEventArgs e) => Static_Delete(this);
-        void Clear_Click(object sender, RoutedEventArgs e) => clear();
-        void loadList()
+
+        void IForm.Delete()
         {
-            IList<E>? list = page.GetList<E>();
-            if(list != null)
-                list.load();
+            if (SelectedData == null)
+                return;
+            Repository.Delete(SelectedData);
+            Clear();
         }
     }
 }

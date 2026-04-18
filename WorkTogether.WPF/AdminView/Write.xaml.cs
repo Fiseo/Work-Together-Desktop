@@ -30,7 +30,7 @@ namespace WorkTogether.WPF.AdminView
             InitializeComponent();
         }
 
-        private void click(object sender, RoutedEventArgs e)
+        private void Click(object sender, RoutedEventArgs e)
         {
             string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
             PageList? page = null;
@@ -42,26 +42,26 @@ namespace WorkTogether.WPF.AdminView
                     break;
                 case "bay":
                     page = new PageList("Modification des Baies", _window);
-                    page.setList<Bay>(new BayList(page));
-                    page.setForm<Bay>(new BayForm(page));
+                    page.SetList<Bay>(new BayList(page));
+                    page.SetForm<Bay>(new BayForm(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "civility":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<Civility>(new CivilityList(page));
-                    page.setForm<Civility>(new CivilityForm(page));
+                    page.SetList<Civility>(new CivilityList(page));
+                    page.SetForm<Civility>(new CivilityForm(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     page = new PageList("Modification des Offres", _window);
-                    page.setList<Offer>(new OfferList(page));
-                    page.setForm<Offer>(new OfferForm(page));
+                    page.SetList<Offer>(new OfferList(page));
+                    page.SetForm<Offer>(new OfferForm(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
                     page = new PageList("Modification des Civilités", _window);
-                    page.setList<ServiceCallType>(new ServiceCallTypeList(page));
-                    page.setForm<ServiceCallType>(new ServiceCallTypeForm(page));
+                    page.SetList<ServiceCallType>(new ServiceCallTypeList(page));
+                    page.SetForm<ServiceCallType>(new ServiceCallTypeForm(page));
                     _window.mainFrame.Content = page;
                     break;
             }

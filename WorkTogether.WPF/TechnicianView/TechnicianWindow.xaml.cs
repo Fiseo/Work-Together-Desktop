@@ -21,25 +21,25 @@ namespace WorkTogether.WPF.TechnicianView
     /// </summary>
     public partial class TechnicianWindow : Window, IWindow<Technician>
     {
-        public Technician user { get; }
-        public WorkTogetherContext context { get; }
+        public Technician User { get; }
+        public WorkTogetherContext Context { get; }
         public TechnicianWindow(Technician user)
         {
-            this.user = user;
-            context = new WorkTogetherContext();
+            User = user;
+            Context = new WorkTogetherContext();
             InitializeComponent();
         }
 
         public TechnicianWindow(Technician user, WorkTogetherContext context)
         {
-            this.user = user;
-            this.context = context;
+            User = user;
+            Context = context;
             InitializeComponent();
         }
 
-        public void logout()
+        public void Logout()
         {
-            var main = new MainWindow(context);
+            var main = new MainWindow(Context);
             main.Show();
             Close();
         }

@@ -5,13 +5,13 @@ namespace WorkTogether.WPF
 {
     public interface IWindow
     {
-        WorkTogetherContext context { get; }
-        void logout();
+        WorkTogetherContext Context { get; }
+        void Logout();
     }
 
     public interface IWindow<U> : IWindow
         where U : User
     {
-        U user { get; }
+        U User { get; }
     }
 }

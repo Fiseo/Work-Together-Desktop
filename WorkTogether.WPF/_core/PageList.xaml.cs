@@ -24,45 +24,45 @@ namespace WorkTogether.WPF
     public partial class PageList : UserControl
     {
         
-        public IWindow window {  get; }
-        private object? list = null;
-        private object? form = null;
+        public IWindow Window {  get; }
+        private object? _list = null;
+        private object? _form = null;
 
         public PageList(string titre, IWindow window)
         {
             InitializeComponent();
             TitleLabel.Text = titre;
-            this.window = window;
+            Window = window;
 
         }
 
-        public void setList<E>(IList<E> list) where E : DbEntity
+        public void SetList<E>(IList<E> list) where E : DbEntity
         {
-            this.list = list;
+            _list = list;
             ListFrame.Content = list;
         }
 
         public IList<E>? GetList<E>() where E : DbEntity
         {
-            if (list == null)
+            if (_list == null)
                 return null;
-            return (IList<E>)list;
+            return (IList<E>)_list;
         }
 
-        public void setForm<E>(IForm<E> form) where E : DbEntity
+        public void SetForm<E>(IForm<E> form) where E : DbEntity
         {
-            this.form = form;
+            _form = form;
             FormFrame.Content = form;
         }
 
         public IForm<E>? GetForm<E>() where E : DbEntity
         {
-            if (form == null)
+            if (_form == null)
                 return null;
-            return (IForm<E>)form;
+            return (IForm<E>)_form;
         }
 
-        public void setSelectedData<E>(E entity) where E : DbEntity
+        public void SetSelectedData<E>(E entity) where E : DbEntity
         {
             IForm<E>? f = GetForm<E>();
             if (f != null)

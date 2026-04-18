@@ -27,8 +27,8 @@ namespace WorkTogether.WPF.AdminView.List
         private PageList _page;
         private EntityRepository<ServiceCall> _repository;
 
-        PageList IList<ServiceCall>.page => _page;
-        EntityRepository<ServiceCall> IList<ServiceCall>.repository => _repository;
+        PageList IList<ServiceCall>.Page => _page;
+        EntityRepository<ServiceCall> IList<ServiceCall>.Repository => _repository;
 
 
         private ServiceCall _data;
@@ -38,9 +38,9 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new ServiceCall();
-            _repository = new ServiceCallRepository(_page.window.context);
+            _repository = new ServiceCallRepository(_page.Window.Context);
             InitializeComponent();
-            load();
+            Load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
@@ -48,10 +48,10 @@ namespace WorkTogether.WPF.AdminView.List
             _data = DataGrid.SelectedItem as ServiceCall;
 
             if (_data != null)
-                _page.setSelectedData<ServiceCall>(_data);
+                _page.SetSelectedData<ServiceCall>(_data);
         }
 
-        public void load()
+        public void Load()
         {
             DataGrid.ItemsSource = _repository.FindAll();
         }

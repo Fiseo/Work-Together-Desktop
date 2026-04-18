@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF._core;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
@@ -27,8 +28,9 @@ namespace WorkTogether.WPF.AdminView.Form
     {
         private PageList _page;
         private ServiceCallTypeRepository _repository;
-        PageList IForm<ServiceCallType>.page => _page;
-        EntityRepository<ServiceCallType> IForm<ServiceCallType>.repository => _repository;
+        private BtnForm _btn;
+        PageList IForm.Page => _page;
+        EntityRepository<ServiceCallType> IForm<ServiceCallType>.Repository => _repository;
 
         private ServiceCallType? _SelectedData = null;
         public ServiceCallType? SelectedData
@@ -37,44 +39,22 @@ namespace WorkTogether.WPF.AdminView.Form
             set
             {
                 _SelectedData = value;
-                reload();
+                Reload();
             }
         }
 
         public ServiceCallTypeForm(PageList page)
         {
-            _page = page;
-            _repository = new ServiceCallTypeRepository(_page.window.context);
             InitializeComponent();
+            _page = page;
+            _repository = new ServiceCallTypeRepository(_page.Window.Context);
+            _btn = new BtnForm(this);
+            Btn.Content = _btn;
         }
 
-
-        public void reload()
-        {
-            if (_SelectedData == null)
-                return;
-            TxtNewLabel.Text = _SelectedData.Label;
-            Delete.Visibility = Visibility.Visible;
-            Clear.Visibility = Visibility.Visible;
-            TitleForm.Text = "Modifier un type d'intervention";
-        }
-
-        public void clear()
-        {
-            TxtNewLabel.Clear();
-            _SelectedData = null;
-            Delete.Visibility = Visibility.Collapsed;
-            Clear.Visibility = Visibility.Collapsed;
-            TitleForm.Text = "Créer un nouveau type d'intervention";
-            ((IForm<ServiceCallType>)this).loadList();
-        }
-
-        public void Save_Click(object sender, RoutedEventArgs e)
+        public void Save()
         {
             string label = TxtNewLabel.Text.Trim();
-
-            if (string.IsNullOrEmpty(label))
-                return;
 
             if (_SelectedData == null)
                 _SelectedData = new ServiceCallType();
@@ -82,11 +62,26 @@ namespace WorkTogether.WPF.AdminView.Form
             _SelectedData.Label = label;
 
             _repository.Save(_SelectedData);
-            clear();
+            Clear();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<ServiceCallType>.Static_Delete(this);
 
-        public void Clear_Click(object sender, RoutedEventArgs e) => clear();
+        public void Reload()
+        {
+            if (_SelectedData == null)
+                return;
+            TxtNewLabel.Text = _SelectedData.Label;
+            _btn.SetEdit();
+            TitleForm.Text = "Modifier un type d'intervention";
+        }
+
+        public void Clear()
+        {
+            TxtNewLabel.Clear();
+            _SelectedData = null;
+            _btn.SetNew();
+            TitleForm.Text = "Créer un nouveau type d'intervention";
+            ((IForm<ServiceCallType>)this).LoadList();
+        }
     }
 }

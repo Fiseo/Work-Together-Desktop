@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Models;
 using WorkTogether.Data.Repository;
+using WorkTogether.WPF._core;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
@@ -28,58 +29,33 @@ namespace WorkTogether.WPF.AdminView.Form
         private PageList _page;
         private BayRepository _repository;
         private UnitRepository _unitRepository;
-        PageList IForm<Bay>.page => _page;
-        EntityRepository<Bay> IForm<Bay>.repository => _repository;
-
-
         private Bay? _SelectedData = null;
+        private BtnForm _btn;
+
+        PageList IForm.Page => _page;
+        EntityRepository<Bay> IForm<Bay>.Repository => _repository;
+
         public Bay? SelectedData
         {
             get => _SelectedData;
             set
             {
                 _SelectedData = value;
-                reload();
+                Reload();
             }
         }
 
         public BayForm(PageList page)
         {
-            _page = page;
-            _repository = new BayRepository(_page.window.context);
-            _unitRepository = new UnitRepository(_page.window.context);
             InitializeComponent();
+            _page = page;
+            _repository = new BayRepository(_page.Window.Context);
+            _unitRepository = new UnitRepository(_page.Window.Context);
+            _btn = new BtnForm(this);
+            Btn.Content = _btn;
         }
 
-
-        public void reload()
-        {
-            if (_SelectedData == null)
-                return;
-            TxtLabel.Text = _SelectedData.Label;
-            TxtNbrUnit.Text = _SelectedData.Units.Count.ToString();
-            TxtUnitLabel.Text = _SelectedData.UnitPrefix;
-
-            TxtNbrUnit.IsReadOnly = true;
-            Delete.Visibility = Visibility.Visible;
-            Clear.Visibility = Visibility.Visible;
-            TitleForm.Text = "Modifier une baie";
-        }
-
-        public void clear()
-        {
-            TxtLabel.Clear();
-            TxtNbrUnit.Text = "42";
-            TxtUnitLabel.Text = "U";
-            _SelectedData = null;
-            TxtNbrUnit.IsReadOnly = false;
-            Delete.Visibility = Visibility.Collapsed;
-            Clear.Visibility = Visibility.Collapsed;
-            TitleForm.Text = "Créer une nouvelle baie";
-            ((IForm<Bay>)this).loadList();
-        }
-
-        public void Save_Click(object sender, RoutedEventArgs e)
+        public void Save()
         {
             string label = TxtLabel.Text.Trim();
             string UnitLabel = TxtUnitLabel.Text.Trim();
@@ -103,7 +79,7 @@ namespace WorkTogether.WPF.AdminView.Form
             for (int i = 1; i <= x; i++)
             {
                 Unit? u = null;
-                if(isNew)
+                if (isNew)
                 {
                     u = new Unit();
                     u.Bay = _SelectedData;
@@ -115,11 +91,32 @@ namespace WorkTogether.WPF.AdminView.Form
                 _unitRepository.Save(u);
             }
 
-            clear();
+            Clear();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<Bay>.Static_Delete(this);
+        public void Reload()
+        {
+            if (_SelectedData == null)
+                return;
+            TxtLabel.Text = _SelectedData.Label;
+            TxtNbrUnit.Text = _SelectedData.Units.Count.ToString();
+            TxtUnitLabel.Text = _SelectedData.UnitPrefix;
 
-        public void Clear_Click(object sender, RoutedEventArgs e) => clear();
+            TxtNbrUnit.IsReadOnly = true;
+            _btn.SetEdit();
+            TitleForm.Text = "Modifier une baie";
+        }
+
+        public void Clear()
+        {
+            TxtLabel.Clear();
+            TxtNbrUnit.Text = "42";
+            TxtUnitLabel.Text = "U";
+            _SelectedData = null;
+            TxtNbrUnit.IsReadOnly = false;
+            _btn.SetNew();
+            TitleForm.Text = "Créer une nouvelle baie";
+            ((IForm<Bay>)this).LoadList();
+        }
     }
 }

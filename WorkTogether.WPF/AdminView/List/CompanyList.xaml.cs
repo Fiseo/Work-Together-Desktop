@@ -26,8 +26,8 @@ namespace WorkTogether.WPF.AdminView.List
         private PageList _page;
         private EntityRepository<Company> _repository;
 
-        PageList IList<Company>.page => _page;
-        EntityRepository<Company> IList<Company>.repository => _repository;
+        PageList IList<Company>.Page => _page;
+        EntityRepository<Company> IList<Company>.Repository => _repository;
 
 
         private Company _data;
@@ -37,9 +37,9 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new Company();
-            _repository = new CompanyRepository(_page.window.context);
+            _repository = new CompanyRepository(_page.Window.Context);
             InitializeComponent();
-            load();
+            Load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
@@ -47,10 +47,10 @@ namespace WorkTogether.WPF.AdminView.List
             _data = DataGrid.SelectedItem as Company;
 
             if (_data != null)
-                _page.setSelectedData<Company>(_data);
+                _page.SetSelectedData<Company>(_data);
         }
 
-        public void load()
+        public void Load()
         {
             DataGrid.ItemsSource = _repository.FindAll();
         }

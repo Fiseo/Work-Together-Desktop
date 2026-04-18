@@ -29,70 +29,71 @@ namespace WorkTogether.WPF.AdminView
             InitializeComponent();
         }
 
-        private void click(object sender, RoutedEventArgs e)
+        private void Click(object sender, RoutedEventArgs e)
         {
             string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
+            PageList? page = null;
 
             switch (tag)
             {
                 case "bay":
-                    PageList? page = new PageList("Liste des Baies", _window);
-                    page.setList<Bay>(new BayList(page));
+                    page = new PageList("Liste des Baies", _window);
+                    page.SetList<Bay>(new BayList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCall":
                     page = new PageList("Liste des Interventions", _window);
-                    page.setList<ServiceCall>(new ServiceCallList(page));
+                    page.SetList<ServiceCall>(new ServiceCallList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "booking":
                     page = new PageList("Liste des Réservations", _window);
-                    page.setList<Booking>(new BookingList(page));
+                    page.SetList<Booking>(new BookingList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "user":
                     page = new PageList("Liste des Utilisateurs", _window);
-                    page.setList<User>(new UserList(page));
+                    page.SetList<User>(new UserList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "technician":
                     page = new PageList("Liste des Techniciens", _window);
-                    page.setList<Technician>(new TechnicianList(page));
+                    page.SetList<Technician>(new TechnicianList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "individual":
                     page = new PageList("Liste des Particuliers", _window);
-                    page.setList<Individual>(new IndividualList(page));
+                    page.SetList<Individual>(new IndividualList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "unit":
                     page = new PageList("Liste des Unités", _window);
-                    page.setList<Unit>(new UnitList(page));
+                    page.SetList<Unit>(new UnitList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "serviceCallType":
                     page = new PageList("Liste des Types d'interventions", _window);
-                    page.setList<ServiceCallType>(new ServiceCallTypeList(page));
+                    page.SetList<ServiceCallType>(new ServiceCallTypeList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "offer":
                     page = new PageList("Liste des Offres", _window);
-                    page.setList<Offer>(new OfferList(page));
+                    page.SetList<Offer>(new OfferList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "civility":
                     page = new PageList("Liste des Civilités", _window);
-                    page.setList<Civility>(new CivilityList(page));
+                    page.SetList<Civility>(new CivilityList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "accountant":
                     page = new PageList("Liste des Comptables", _window);
-                    page.setList<Accountant>(new AccountantList(page));
+                    page.SetList<Accountant>(new AccountantList(page));
                     _window.mainFrame.Content = page;
                     break;
                 case "company":
                     page = new PageList("Liste des Entreprises", _window);
-                    page.setList<Company>(new CompanyList(page));
+                    page.SetList<Company>(new CompanyList(page));
                     _window.mainFrame.Content = page;
                     break;
             }

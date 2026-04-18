@@ -21,25 +21,25 @@ namespace WorkTogether.WPF.AccountantView
     /// </summary>
     partial class AccountantWindow : Window, IWindow<Accountant>
     {
-        public Accountant user { get; }
-        public WorkTogetherContext context { get; }
+        public Accountant User { get; }
+        public WorkTogetherContext Context { get; }
         public AccountantWindow(Accountant user)
         {
-            this.user = user;
-            context = new WorkTogetherContext();
+            User = user;
+            Context = new WorkTogetherContext();
             InitializeComponent();
         }
 
         public AccountantWindow(Accountant user, WorkTogetherContext context)
         {
-            this.user = user;
-            this.context = context;
+            User = user;
+            Context = context;
             InitializeComponent();
         }
 
-        public void logout()
+        public void Logout()
         {
-            var main = new MainWindow(context);
+            var main = new MainWindow(Context);
             main.Show();
             Close();
         }

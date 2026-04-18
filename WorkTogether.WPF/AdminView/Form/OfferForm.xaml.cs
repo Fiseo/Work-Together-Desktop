@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF._core;
 
 namespace WorkTogether.WPF.AdminView.Form
 {
@@ -28,52 +29,30 @@ namespace WorkTogether.WPF.AdminView.Form
     {
         private PageList _page;
         private OfferRepository _repository;
-        PageList IForm<Offer>.page => _page;
-        EntityRepository<Offer> IForm<Offer>.repository => _repository;
-
         private Offer? _SelectedData = null;
+        private BtnForm _btn;
+        PageList IForm.Page => _page;
+        EntityRepository<Offer> IForm<Offer>.Repository => _repository;
         public Offer? SelectedData
         {
             get => _SelectedData;
             set
             {
                 _SelectedData = value;
-                reload();
+                Reload();
             }
         }
 
         public OfferForm(PageList page)
         {
-            _page = page;
-            _repository = new OfferRepository(_page.window.context);
             InitializeComponent();
+            _page = page;
+            _repository = new OfferRepository(_page.Window.Context);
+            _btn = new BtnForm(this);
+            Btn.Content = _btn; 
         }
 
-        public void reload()
-        {
-            if (_SelectedData == null)
-                return;
-            TxtNewLabel.Text = _SelectedData.Label;
-            TxtNewUnits.Text = System.Convert.ToString(_SelectedData.UnitProvided);
-            TxtNewReduction.Text = System.Convert.ToString(_SelectedData.Discount);
-            TxtNewDescription.Text = _SelectedData.Description;
-            TitleForm.Text = "Modifier une offre";
-        }
-        
-        public void clear()
-        {
-            TxtNewLabel.Clear();
-            TxtNewUnits.Clear();
-            TxtNewReduction.Text = "100";
-            TxtNewDescription.Clear();
-            _SelectedData = null;
-            Delete.Visibility = Visibility.Collapsed;
-            Clear.Visibility = Visibility.Collapsed;
-            TitleForm.Text = "Créer une nouvelle offre";
-            ((IForm<Offer>)this).loadList();
-        }
-
-        public void Save_Click(object sender, RoutedEventArgs e)
+        public void Save()
         {
             string label = TxtNewLabel.Text.Trim();
             int UnitProvided = System.Convert.ToInt32(TxtNewUnits.Text.Trim());
@@ -95,11 +74,31 @@ namespace WorkTogether.WPF.AdminView.Form
             _SelectedData.IsActive = true;
 
             _repository.Save(_SelectedData);
-            clear();
+            Clear();
         }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => IForm<Offer>.Static_Delete(this);
-
-        public void Clear_Click(object sender, RoutedEventArgs e) => clear();
+        public void Reload()
+        {
+            if (_SelectedData == null)
+                return;
+            TxtNewLabel.Text = _SelectedData.Label;
+            TxtNewUnits.Text = System.Convert.ToString(_SelectedData.UnitProvided);
+            TxtNewReduction.Text = System.Convert.ToString(_SelectedData.Discount);
+            TxtNewDescription.Text = _SelectedData.Description;
+            _btn.SetEdit();
+            TitleForm.Text = "Modifier une offre";
+        }
+        
+        public void Clear()
+        {
+            TxtNewLabel.Clear();
+            TxtNewUnits.Clear();
+            TxtNewReduction.Text = "100";
+            TxtNewDescription.Clear();
+            _SelectedData = null;
+            _btn.SetNew();
+            TitleForm.Text = "Créer une nouvelle offre";
+            ((IForm<Offer>)this).LoadList();
+        }
     }
 }

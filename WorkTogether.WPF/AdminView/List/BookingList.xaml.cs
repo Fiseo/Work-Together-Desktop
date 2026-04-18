@@ -26,8 +26,8 @@ namespace WorkTogether.WPF.AdminView.List
     {
         private PageList _page;
         private EntityRepository<Booking> _repository;
-        PageList IList<Booking>.page => _page;
-        EntityRepository<Booking> IList<Booking>.repository => _repository;
+        PageList IList<Booking>.Page => _page;
+        EntityRepository<Booking> IList<Booking>.Repository => _repository;
 
 
         private Booking _data;
@@ -37,9 +37,9 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new Booking();
-            _repository = new BookingRepository(_page.window.context);
+            _repository = new BookingRepository(_page.Window.Context);
             InitializeComponent();
-            load();
+            Load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
@@ -47,10 +47,10 @@ namespace WorkTogether.WPF.AdminView.List
             _data = DataGrid.SelectedItem as Booking;
 
             if (_data != null)
-                _page.setSelectedData<Booking>(_data);
+                _page.SetSelectedData<Booking>(_data);
         }
 
-        public void load()
+        public void Load()
         {
             DataGrid.ItemsSource = _repository.FindAll();
         }

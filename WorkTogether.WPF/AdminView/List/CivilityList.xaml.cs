@@ -26,8 +26,8 @@ namespace WorkTogether.WPF.AdminView.List
         private PageList _page;
         private EntityRepository<Civility> _repository;
 
-        PageList IList<Civility>.page => _page;
-        EntityRepository<Civility> IList<Civility>.repository => _repository;
+        PageList IList<Civility>.Page => _page;
+        EntityRepository<Civility> IList<Civility>.Repository => _repository;
 
 
         private Civility _data;
@@ -37,9 +37,9 @@ namespace WorkTogether.WPF.AdminView.List
         {
             _page = page;
             _data = new Civility();
-            _repository = new CivilityRepository(_page.window.context);
+            _repository = new CivilityRepository(_page.Window.Context);
             InitializeComponent();
-            load();
+            Load();
         }
 
         public void Data_Selected(object sender, RoutedEventArgs e)
@@ -47,10 +47,10 @@ namespace WorkTogether.WPF.AdminView.List
             _data = DataGrid.SelectedItem as Civility;
 
             if (_data != null)
-                _page.setSelectedData<Civility>(_data);
+                _page.SetSelectedData<Civility>(_data);
         }
 
-        public void load()
+        public void Load()
         {
             DataGrid.ItemsSource = _repository.FindAll();
         }
