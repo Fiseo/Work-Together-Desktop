@@ -9,7 +9,7 @@ namespace WorkTogether.WPF
         void logout();
     }
 
-    public interface IWindow<U>
+    public interface IWindow<U> : IWindow
         where U : User
     {
         U user { get; }
