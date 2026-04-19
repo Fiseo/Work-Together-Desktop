@@ -51,10 +51,46 @@ namespace WorkTogether.WPF._core
             Clear.Visibility = Visibility.Visible;
         }
 
-        public void Save_Click(object sender, RoutedEventArgs e) => _form.Save();
+        private void AddError(string message)
+        {
+            Error.Text = message;
+            ErrorBanner.Visibility = Visibility.Visible;
+        }
 
-        public void Delete_Click(object sender, RoutedEventArgs e) => _form.Delete();
+        private void ClearError()
+        {
+            ErrorBanner.Visibility = Visibility.Collapsed;
+        }
 
-        public void Clear_Click(object sender, RoutedEventArgs e) => _form.Clear();
+        public void Save_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClearError();
+                _form.Save();
+            } catch (Exception ex)
+            {
+                AddError(ex.Message.ToString());
+            }
+        }
+
+        public void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ClearError();
+                _form.Delete();
+            }
+            catch (Exception ex)
+            {
+                AddError(ex.Message.ToString());
+            }
+        }
+
+        public void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearError();
+            _form.Clear();
+        }
     }
 }
