@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="WorkTogether.WPF.AdminView.Form.StaffForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WorkTogether.WPF.AdminView.Form"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel>
+
+            <Border Background="#F9FAFB" Padding="15" CornerRadius="5" BorderBrush="#E5E7EB" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock x:Name="TitleForm" Text="Créer un nouveau utilisateur" FontSize="16" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,15"/>
+
+                    <Grid Margin="0,0,0,10" Cursor="Hand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Nom :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtName" Height="28" Padding="3" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Prénom :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtFirstName" Height="28" Padding="3" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,10" Cursor="Hand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Email :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtEmail" Height="28" Padding="3" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Civilité :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                            <TextBox x:Name="TxtUsernam" Height="28" Padding="3" VerticalContentAlignment="Center" Visibility="Collapsed"/>
+                            <ComboBox x:Name="Civility" ItemsSource="{Binding Civilities}" SelectedItem="{Binding SelectedCivility}" DisplayMemberPath="Label"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,10" Cursor="Hand" Visibility="Visible" x:Name="UnchangeableValues">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Mot de passe :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                            <PasswordBox x:Name="TxtPassword" Height="28" Padding="3" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Rôle :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                            <RadioButton x:Name="IsTechnician" Content="Technicien" IsChecked="True"  />
+                            <RadioButton Content="Comptable" IsChecked="False" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Frame x:Name="Btn" NavigationUIVisibility="Hidden"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

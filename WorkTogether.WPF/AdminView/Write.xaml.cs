@@ -38,7 +38,10 @@ namespace WorkTogether.WPF.AdminView
             switch (tag)
             {
                 case "user":
-                    //_window.mainFrame.Content = new User(_window);
+                    page = new PageList("Modification des Staffs", _window);
+                    page.SetList<Staff>(new StaffList(page));
+                    page.SetForm<Staff>(new StaffForm(page));
+                    _window.mainFrame.Content = page;
                     break;
                 case "bay":
                     page = new PageList("Modification des Baies", _window);
