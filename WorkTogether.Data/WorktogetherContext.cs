@@ -43,6 +43,8 @@ public partial class WorkTogetherContext : DbContext
     public virtual DbSet<Accountant> AccountantSet { get; set; }
 
     public virtual DbSet<Staff> StaffSet { get; set; }
+    
+    public virtual DbSet<Price> PriceSet { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -324,6 +326,20 @@ public partial class WorkTogetherContext : DbContext
             entity.HasOne(d => d.Civility).WithMany(p => p.Individuals)
                 .HasForeignKey(d => d.CivilityId)
                 .HasConstraintName("FK_8D93D64923D6A298");
+
+        });
+
+        modelBuilder.Entity<Price>(entity =>
+        {
+            entity.Property(p => p.Value)
+                .HasColumnType("int")
+                .HasColumnName("value");
+            entity.Property(p => p.Start)
+                .HasColumnType("date")
+                .HasColumnName("start");
+            entity.Property(p => p.End)
+                .HasColumnType("date")
+                .HasColumnName("end");
 
         });
 
