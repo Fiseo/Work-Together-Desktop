@@ -331,16 +331,19 @@ public partial class WorkTogetherContext : DbContext
 
         modelBuilder.Entity<Price>(entity =>
         {
-            entity.Property(p => p.Value)
-                .HasColumnType("int")
-                .HasColumnName("value");
-            entity.Property(p => p.Start)
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("price");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.End)
+                .HasColumnType("date")
+                .HasColumnName("end")
+                .IsRequired(false);
+            entity.Property(e => e.Start)
                 .HasColumnType("date")
                 .HasColumnName("start");
-            entity.Property(p => p.End)
-                .HasColumnType("date")
-                .HasColumnName("end");
-
+            entity.Property(e => e.Value).HasColumnName("value");
         });
 
         OnModelCreatingPartial(modelBuilder);
