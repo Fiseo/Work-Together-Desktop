@@ -17,5 +17,22 @@ namespace WorkTogether.Data.Repository
         {
             DbSet = Context.PriceSet;
         }
+
+        public Price? FindLatest()
+        {
+            return DbSet
+                .Include(p => p.Preceding)
+                .Include(p => p.Successor)
+                .Where(p => p.End == null)
+                .SingleOrDefault();
+        }
+
+        public override List<Price> FindAll()
+        {
+            return DbSet
+                .Include(p => p.Preceding)
+                .Include (p => p.Successor)
+                .ToList();
+        }
     }
 }

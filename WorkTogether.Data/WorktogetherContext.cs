@@ -335,15 +335,21 @@ public partial class WorkTogetherContext : DbContext
 
             entity.ToTable("price");
 
+            entity.HasIndex(e => e.PrecedingId, "UNIQ_CAC822D97A0B5CF3").IsUnique();
+
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.End)
                 .HasColumnType("date")
-                .HasColumnName("end")
-                .IsRequired(false);
+                .HasColumnName("end");
+            entity.Property(e => e.PrecedingId).HasColumnName("preceding_id");
             entity.Property(e => e.Start)
                 .HasColumnType("date")
                 .HasColumnName("start");
             entity.Property(e => e.Value).HasColumnName("value");
+
+            entity.HasOne(d => d.Preceding).WithOne(p => p.Successor)
+                .HasForeignKey<Price>(d => d.PrecedingId)
+                .HasConstraintName("FK_CAC822D97A0B5CF3");
         });
 
         OnModelCreatingPartial(modelBuilder);

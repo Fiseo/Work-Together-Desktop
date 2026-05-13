@@ -52,6 +52,8 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -62,6 +64,7 @@
         <Button Grid.Row="0" Grid.Column="4" Content="Civilité"    Style="{StaticResource PageBtn}" Click="Click" Tag="civility"/>
         <Button Grid.Row="0" Grid.Column="6" Content="Offre"    Style="{StaticResource PageBtn}" Click="Click" Tag="offer"/>
         <Button Grid.Row="0" Grid.Column="8" Content="Type d'intervention"    Style="{StaticResource PageBtn}" Click="Click" Tag="serviceCall"/>
+        <Button Grid.Row="0" Grid.Column="10" Content="Prix des unités"    Style="{StaticResource PageBtn}" Click="Click" Tag="price"/>
     </Grid>
 
 </UserControl>

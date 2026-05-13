@@ -18,5 +18,11 @@ namespace WorkTogether.Data.Models
         public DateTime Start { get; set; }
 
         public DateTime? End { get; set; }
+
+        public int? PrecedingId { get; set; }
+
+        public virtual Price? Successor { get; set; }
+
+        public virtual Price? Preceding { get; set; }
     }
 }

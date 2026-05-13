@@ -67,6 +67,12 @@ namespace WorkTogether.WPF.AdminView
                     page.SetForm<ServiceCallType>(new ServiceCallTypeForm(page));
                     _window.mainFrame.Content = page;
                     break;
+                case "price":
+                    page = new PageList("Modification du prix des unités", _window);
+                    page.SetList<Price>(new PriceList(page));
+                    page.SetForm<Price>(new PriceForm(page));
+                    _window.mainFrame.Content = page;
+                    break;
             }
         }
     }
