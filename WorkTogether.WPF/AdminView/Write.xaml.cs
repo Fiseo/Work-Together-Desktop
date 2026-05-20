@@ -13,8 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WorkTogether.Data.Models;
-using WorkTogether.WPF.AdminView.Form;
-using WorkTogether.WPF.AdminView.List;
+using WorkTogether.WPF.List;
+using WorkTogether.WPF.Form;
 
 namespace WorkTogether.WPF.AdminView
 {

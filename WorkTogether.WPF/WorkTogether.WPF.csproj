@@ -19,4 +19,49 @@
     <ProjectReference Include="..\WorkTogether.Data\WorkTogether.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="_core\List\AccountantList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\BayList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\BookingList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\CivilityList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\CompanyList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\IndividualList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\OfferList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\ServiceCallList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\ServiceCallTypeList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\TechnicianList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\UnitList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\UserList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\StaffList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="_core\List\PriceList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>

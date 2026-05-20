@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="WorkTogether.WPF.Form.PriceForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WorkTogether.WPF.Form"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Grid.Column="1">
+
+            <Border Background="#F9FAFB" Padding="15" CornerRadius="5" BorderBrush="#E5E7EB" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Plannifier le prochain prix :" FontSize="16" FontWeight="Bold" Foreground="#374151" Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Prix d'une unité :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtPrice" Height="28" Padding="3" VerticalContentAlignment="Center" Text=""/>
+
+                    <TextBlock Text="Début de la mise en place :" Foreground="#6B7280" Margin="0,0,0,5"/>
+                    <DatePicker x:Name="SelectedDate" />
+
+                    <Frame x:Name="Btn" NavigationUIVisibility="Hidden"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>
