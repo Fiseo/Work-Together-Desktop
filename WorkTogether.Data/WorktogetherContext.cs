@@ -43,6 +43,7 @@ public partial class WorkTogetherContext : DbContext
     public virtual DbSet<Accountant> AccountantSet { get; set; }
 
     public virtual DbSet<Staff> StaffSet { get; set; }
+    public virtual DbSet<Client> ClientSet { get; set; }
     
     public virtual DbSet<Price> PriceSet { get; set; }
 

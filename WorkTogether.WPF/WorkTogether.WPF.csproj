@@ -62,6 +62,11 @@
     <Page Update="_core\List\PriceList.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Update="_core\List\ClientList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
