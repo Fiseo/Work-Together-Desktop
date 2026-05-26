@@ -24,14 +24,6 @@ namespace WorkTogether.WPF.AdminView
     {
         public User User { get; }
         public WorkTogetherContext Context { get; }
-        public AdminWindow(User user)
-        {
-            User = user;
-            Context = new WorkTogetherContext();
-            InitializeComponent();
-            usernameLabel.Text = user.Username;
-            mainFrame.Content = new Read(this);
-        }
 
         public AdminWindow(User user, WorkTogetherContext context)
         {
@@ -40,6 +32,10 @@ namespace WorkTogether.WPF.AdminView
             InitializeComponent();
             usernameLabel.Text = user.Username;
             mainFrame.Content = new Read(this);
+        }
+        
+        public AdminWindow(User user): this(user, new WorkTogetherContext())
+        {
         }
 
         public void Logout()
