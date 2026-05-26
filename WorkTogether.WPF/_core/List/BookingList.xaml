@@ -19,8 +19,8 @@
                 <DataGridTextColumn Header="N° de commande" Binding="{Binding Label}" Width="auto" FontWeight="SemiBold"/>
                 <DataGridTextColumn Header="Client" Binding="{Binding Client.Label}" Width="auto" FontWeight="SemiBold"/>
                 <DataGridTextColumn Header="Offre" Binding="{Binding Offer.Label}" Width="auto" FontWeight="SemiBold"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding Start, StringFormat={}{0:dd/MM/yyyy}}" Width="auto"/>
-                <DataGridTextColumn Header="Technicien" Binding="{Binding End, StringFormat={}{0:dd/MM/yyyy}}" Width="auto"/>
+                <DataGridTextColumn Header="Date de début" Binding="{Binding Start, StringFormat={}{0:dd/MM/yyyy}}" Width="auto"/>
+                <DataGridTextColumn Header="Date de fin" Binding="{Binding End, StringFormat={}{0:dd/MM/yyyy}}" Width="auto"/>
                 <DataGridTextColumn Header="Type de renouvellement" 
                             Binding="{Binding IsMonthly, Converter={StaticResource BoolToStr}, ConverterParameter='Mensuel|Annuel'}"
                             Width="auto"/>

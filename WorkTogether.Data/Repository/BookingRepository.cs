@@ -27,5 +27,16 @@ namespace WorkTogether.Data.Repository
                 .Include(b => b.BookingUnits)
                 .ToList();
         }
+
+        public List<Booking> FindByClient(Client client)
+        {
+            return DbSet
+                .Where(b => b.Individual == client || b.Company == client) 
+                .Include(b => b.Individual)
+                .Include(b => b.Company)
+                .Include(b => b.Offer)
+                .Include(b => b.BookingUnits)
+                .ToList();
+        }
     }
 }

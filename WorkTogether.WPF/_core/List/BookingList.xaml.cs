@@ -25,7 +25,8 @@ namespace WorkTogether.WPF.List
     public partial class BookingList : UserControl, IList<Booking>
     {
         private PageList _page;
-        private EntityRepository<Booking> _repository;
+        private BookingRepository _repository;
+        private Client? _client;
         PageList IList<Booking>.Page => _page;
         EntityRepository<Booking> IList<Booking>.Repository => _repository;
 
@@ -42,6 +43,12 @@ namespace WorkTogether.WPF.List
             Load();
         }
 
+        public BookingList(PageList page, Client client) : this(page)
+        {
+            _client = client;
+            Load();
+        }
+
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
             _data = DataGrid.SelectedItem as Booking;
@@ -52,7 +59,10 @@ namespace WorkTogether.WPF.List
 
         public void Load()
         {
-            DataGrid.ItemsSource = _repository.FindAll();
+            if (_client != null)
+                DataGrid.ItemsSource = _repository.FindByClient(_client);
+            else
+                DataGrid.ItemsSource = _repository.FindAll();
         }
     }
 }
