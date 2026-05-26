@@ -23,12 +23,6 @@ namespace WorkTogether.WPF.TechnicianView
     {
         public Technician User { get; }
         public WorkTogetherContext Context { get; }
-        public TechnicianWindow(Technician user)
-        {
-            User = user;
-            Context = new WorkTogetherContext();
-            InitializeComponent();
-        }
 
         public TechnicianWindow(Technician user, WorkTogetherContext context)
         {
@@ -36,12 +30,32 @@ namespace WorkTogether.WPF.TechnicianView
             Context = context;
             InitializeComponent();
         }
+        
+        public TechnicianWindow(Technician user): this(user, new WorkTogetherContext())
+        {
+        }
 
         public void Logout()
         {
             var main = new MainWindow(Context);
             main.Show();
             Close();
+        }
+        
+        public void SetPage(IPage page)
+        {
+            mainFrame.Content =  page;
+        }
+        
+        private void Nav_Click(object sender, RoutedEventArgs e)
+        {
+            string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
+            
+        }
+        
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            Logout();
         }
     }
 }

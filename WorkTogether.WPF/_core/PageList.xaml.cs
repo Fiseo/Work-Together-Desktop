@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -21,7 +22,7 @@ namespace WorkTogether.WPF
     /// <summary>
     /// Logique d'interaction pour PageList.xaml
     /// </summary>
-    public partial class PageList : UserControl
+    public partial class PageList : UserControl, IPage
     {
         
         public IWindow Window {  get; }

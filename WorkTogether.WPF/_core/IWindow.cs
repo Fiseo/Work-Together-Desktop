@@ -7,6 +7,7 @@ namespace WorkTogether.WPF
     {
         WorkTogetherContext Context { get; }
         void Logout();
+        void SetPage(IPage page);
     }
 
     public interface IWindow<U> : IWindow

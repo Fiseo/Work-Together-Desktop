@@ -44,6 +44,11 @@ namespace WorkTogether.WPF.AdminView
             main.Show();
             Close();
         }
+        
+        public void SetPage(IPage page)
+        {
+            mainFrame.Content =  page;
+        }
 
         private void Nav_Click(object sender, RoutedEventArgs e)
         {
