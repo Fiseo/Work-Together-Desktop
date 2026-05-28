@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF._core.Form;
+using WorkTogether.WPF.List;
 
 namespace WorkTogether.WPF.TechnicianView
 {
@@ -29,6 +31,12 @@ namespace WorkTogether.WPF.TechnicianView
             User = user;
             Context = context;
             InitializeComponent();
+            usernameLabel.Text = user.Username;
+            PageList page = new PageList("Liste des Clients", this);
+            page.SetList(new UnitList(page, true));
+            page.SetForm(new ReallocationForm(page));
+            SetPage(page);
+            
         }
         
         public TechnicianWindow(Technician user): this(user, new WorkTogetherContext())
@@ -44,12 +52,31 @@ namespace WorkTogether.WPF.TechnicianView
         
         public void SetPage(IPage page)
         {
+            mainFrame.Content = null;
             mainFrame.Content =  page;
         }
         
         private void Nav_Click(object sender, RoutedEventArgs e)
         {
-            string tag = (sender as Button)?.Tag?.ToString() ?? "dashboard";
+            string tag = (sender as Button)?.Tag?.ToString() ?? "unit";
+
+            PageList? page = null;
+
+            switch (tag)
+            {
+                case "unit":
+                    page = new PageList("Liste des Unités utilisé ayant des problèmes", this);
+                    page.SetList(new UnitList(page, true));
+                    page.SetForm(new ReallocationForm(page));
+                    SetPage(page);
+                    break;
+                case "serviceCall":
+                    page = new PageList("Liste des interventions", this);
+                    page.SetList(new ServiceCallList(page, User));
+                    page.SetForm(new ServiceCallForm(page, User));
+                    SetPage(page);
+                    break;
+            }
             
         }
         

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using WorkTogether.Data;
 using WorkTogether.Data.Repository;
 using WorkTogether.Data.Models;
+using WorkTogether.WPF.TechnicianView;
 
 namespace WorkTogether.WPF.List
 {
@@ -25,21 +26,28 @@ namespace WorkTogether.WPF.List
     public partial class UnitList : UserControl, IList<Unit>
     {
         private PageList _page;
-        private EntityRepository<Unit> _repository;
+        private UnitRepository _repository;
         PageList IList<Unit>.Page => _page;
         EntityRepository<Unit> IList<Unit>.Repository => _repository;
+        private bool _problemOnly;
 
         private Unit _data;
         public Unit Selected_Data => _data;
 
-        public UnitList(PageList page)
+        public UnitList(PageList page):this(page, false)
+        {
+        }
+
+        public UnitList(PageList page, bool problemOnly)
         {
             _page = page;
             _data = new Unit();
             _repository = new UnitRepository(_page.Window.Context);
+            _problemOnly = problemOnly;
             InitializeComponent();
             Load();
         }
+        
 
         public void Data_Selected(object sender, RoutedEventArgs e)
         {
@@ -51,7 +59,21 @@ namespace WorkTogether.WPF.List
 
         public void Load()
         {
-            DataGrid.ItemsSource = _repository.FindAll();
+            if (_problemOnly)
+            {
+                ((IPage)_page).SetPage(new NoUsedUnitWithProblem(_page.Window));
+                /*
+                List<Unit> units = _repository.FindUsedWithProblem() ?? new List<Unit>();
+                if (!units.Any())
+                    _repository.FindUsedWithProblem();
+                else
+                    DataGrid.ItemsSource = units;
+                    */
+            }
+            else
+            {
+                DataGrid.ItemsSource = _repository.FindAll();
+            }
         }
     }
 }

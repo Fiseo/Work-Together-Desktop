@@ -24,5 +24,13 @@ namespace WorkTogether.Data.Repository
                 .Include(sct => sct.ServiceCalls)
                 .ToList();
         }
+
+        public ServiceCallType? FindForReallocation()
+        {
+            return DbSet
+                .Include(sct => sct.ServiceCalls)
+                .Where(s => s.Label == "Reallocation")
+                .SingleOrDefault();
+        }
     }
 }

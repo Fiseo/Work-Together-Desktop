@@ -25,7 +25,7 @@ namespace WorkTogether.WPF.List
     public partial class ServiceCallList : UserControl, IList<ServiceCall>
     {
         private PageList _page;
-        private EntityRepository<ServiceCall> _repository;
+        private ServiceCallRepository _repository;
 
         PageList IList<ServiceCall>.Page => _page;
         EntityRepository<ServiceCall> IList<ServiceCall>.Repository => _repository;
@@ -33,12 +33,16 @@ namespace WorkTogether.WPF.List
 
         private ServiceCall _data;
         public ServiceCall Selected_Data => _data;
+        private Technician? _staff;
 
-        public ServiceCallList(PageList page)
+        public ServiceCallList(PageList page):this(page,null){}
+
+        public ServiceCallList(PageList page, Technician? staff)
         {
             _page = page;
             _data = new ServiceCall();
             _repository = new ServiceCallRepository(_page.Window.Context);
+            _staff = staff;
             InitializeComponent();
             Load();
         }
@@ -53,7 +57,10 @@ namespace WorkTogether.WPF.List
 
         public void Load()
         {
-            DataGrid.ItemsSource = _repository.FindAll();
+            if (_staff == null)
+                DataGrid.ItemsSource = _repository.FindAll();
+            else
+                DataGrid.ItemsSource = _repository.FindAllByTechnician(_staff);
         }
     }
 }

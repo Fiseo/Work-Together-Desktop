@@ -26,4 +26,16 @@ public partial class Unit : DbEntity
                 return false;
         return true;
     }
+
+    public BookingUnit? CurrentBookingUnit
+    {
+        get
+        {
+            //TODO : Optimiser cette vérification
+            foreach (BookingUnit var in BookingUnits)
+                if (var.IsCurrent)
+                    return var;
+            return null;
+        }
+    }
 }

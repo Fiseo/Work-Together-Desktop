@@ -27,5 +27,16 @@ namespace WorkTogether.Data.Repository
                 .Include(sc => sc.Type)
                 .ToList();
         }
+
+        public List<ServiceCall> FindAllByTechnician(Technician technician)
+        {
+            return DbSet
+                .Where(sc => sc.Technician == technician)
+                .Include(sc => sc.Unit)
+                .ThenInclude(u => u.Bay)
+                .Include(sc => sc.Technician)
+                .Include(sc => sc.Type)
+                .ToList();
+        }
     }
 }
